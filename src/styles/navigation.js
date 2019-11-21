@@ -7,6 +7,8 @@ export default css`
 		position: sticky;
 		height: var(--nav-height);
 		top: 0;
+		left: 0;
+		bottom: 0;
 		width: 100vw;
 		padding: var(--padding);
 		background: var(--black);
