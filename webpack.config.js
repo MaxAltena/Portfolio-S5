@@ -30,7 +30,7 @@ const polyfills = [
 
 const commonConfig = merge([
 	{
-		entry: "./src/lit-app.js",
+		entry: "./src/portfolio-app.js",
 		output: {
 			path: OUTPUT_PATH,
 			filename: "[name].[chunkhash:8].js"

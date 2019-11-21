@@ -6,6 +6,11 @@
 	"license": "UNLICENSED",
 	"version": "1.0.0",
 	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/MaxAltena/Portfolio-S5.git"
+	},
+	"homepage": "https://portfolio.maxaltena.com/S5",
 	"dependencies": {
 		"@babel/runtime": "^7.7.2",
 		"@webcomponents/webcomponentsjs": "^2.4.0",
