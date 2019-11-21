@@ -22,8 +22,15 @@ export default css`
 		height: 100%;
 		margin-inline-end: var(--padding);
 	}
+	.width1Half {
+		width: calc(var(--local-size) * 1.5);
+	}
 	.width2 {
 		width: calc(var(--local-size) * 2);
+	}
+
+	.document {
+		max-width: calc(100vw - var(--padding));
 	}
 	.block.topLeft {
 		margin: 0 var(--padding) var(--padding) 0;

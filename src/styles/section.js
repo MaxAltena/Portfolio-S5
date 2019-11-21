@@ -23,7 +23,7 @@ export default css`
 
 		height: 100%;
 
-		--local-size: calc(calc(var(--unit) * 6) + calc(var(--unit) * 8) + calc(var(--unit) * 18));
+		--local-size: calc(var(--unit) * 34);
 
 		margin-inline-start: calc(var(--local-size) + var(--padding));
 	}
@@ -33,20 +33,20 @@ export default css`
 		padding: 0;
 		text-align: center;
 		font-weight: bold;
-		font-size: 1.5em;
-		line-height: 1.8em;
+		font-size: 150%;
+		line-height: 175%;
 	}
 
 	.block.intro.links p {
 		font-weight: 600;
-		font-size: 2.2em;
-		line-height: 2.5em;
+		font-size: 200%;
+		line-height: 225%;
 	}
 	.block.intro.links a {
 		color: var(--white);
 		font-weight: 600;
-		font-size: 2.2em;
-		line-height: 2.5em;
+		font-size: 200%;
+		line-height: 225%;
 	}
 	.block.intro.links a:hover,
 	.block.intro.links a:active {

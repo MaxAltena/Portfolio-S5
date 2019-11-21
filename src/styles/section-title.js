@@ -8,12 +8,15 @@ export default css`
 		transform: rotate(-90deg) translateX(calc(var(--content-height) * -1));
 		transform-origin: left top;
 		margin: 0;
-		padding: calc(var(--unit) * 6) 0 calc(var(--unit) * 8) 0;
+		padding: calc(var(--unit) * 8) 0;
 		height: calc(var(--unit) * 18);
 		font-size: 2.5em;
 		text-align: center;
 		text-transform: lowercase;
 		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	h1::before,

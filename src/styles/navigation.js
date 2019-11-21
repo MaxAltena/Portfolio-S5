@@ -61,9 +61,13 @@ export default css`
 		color: var(--white);
 		text-transform: lowercase;
 		cursor: pointer;
-		padding: calc(var(--unit) * 2) calc(var(--unit) * 2) calc(var(--unit) * 3) calc(var(--unit) * 2);
+		padding: calc(var(--unit) * 2);
 		text-decoration: none;
+		text-align: center;
 		font-family: var(--swc-font, sans-serif);
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		user-select: none;
 		-webkit-user-drag: none;
 	}
@@ -77,5 +81,14 @@ export default css`
 
 	footer span {
 		color: var(--white);
+	}
+
+	@media only screen and (max-width: 800px) {
+		nav ul {
+			max-width: none;
+		}
+		footer {
+			display: none;
+		}
 	}
 `;

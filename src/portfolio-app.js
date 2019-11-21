@@ -156,11 +156,8 @@ class PortfolioApp extends LitElement {
 				return html`
 					<div class="full">
 						<div class="intro block">
-							<p>leeswijzer</p>
-							<p>leeswijzer</p>
-							<p>leeswijzer</p>
-							<p>leeswijzer</p>
-							<p>leeswijzer</p>
+							<p>Stageportfolio S5</p>
+							<p style="margin-block-end: calc(var(--unit) * 12);">Max Altena</p>
 							<p>leeswijzer</p>
 							<p>leeswijzer</p>
 							<p>leeswijzer</p>
@@ -181,7 +178,7 @@ class PortfolioApp extends LitElement {
 							})}
 						</div>
 					</div>
-					<div class="full width2 block green">leeswijzer pdf</div>
+					<div class="full width1Half document block green">leeswijzer pdf</div>
 				`;
 			case "text":
 			default:
@@ -233,7 +230,7 @@ class PortfolioApp extends LitElement {
 						)}
 					</ul>
 					<footer>
-						<span>Stageportfolio Max Altena</span>
+						<span>Stageportfolio S5 - Max Altena</span>
 					</footer>
 				</nav>
 			</div>
