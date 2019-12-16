@@ -2,8 +2,9 @@ import { css } from "lit-element";
 
 export default css`
 	h1 {
-		color: var(--black);
-		font-family: var(--swc-font, sans-serif);
+		color: var(--on-primary);
+		transition: var(--color-transition);
+		font-family: var(--font, sans-serif);
 		width: var(--content-height);
 		transform: rotate(-90deg) translateX(calc(var(--content-height) * -1));
 		transform-origin: left top;
@@ -26,7 +27,8 @@ export default css`
 		left: 0;
 		width: var(--content-height);
 		height: calc(var(--unit) * 2);
-		background: var(--black);
+		background: var(--on-primary);
+		transition: var(--color-transition);
 	}
 	h1::before {
 		top: 0;

@@ -29,6 +29,8 @@ export default css`
 	}
 
 	.block.intro p {
+		color: var(--on-primary);
+		transition: var(--color-transition);
 		margin: 0;
 		padding: 0;
 		text-align: center;
@@ -38,12 +40,15 @@ export default css`
 	}
 
 	.block.intro.links p {
+		color: var(--on-primary);
+		transition: var(--color-transition);
 		font-weight: 600;
 		font-size: 200%;
 		line-height: 225%;
 	}
 	.block.intro.links a {
-		color: var(--white);
+		color: var(--on-primary);
+		transition: var(--color-transition);
 		font-weight: 600;
 		font-size: 200%;
 		line-height: 225%;

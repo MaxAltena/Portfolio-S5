@@ -9,9 +9,12 @@ export default css`
 		top: 0;
 		left: 0;
 		bottom: 0;
+		right: 0;
 		width: 100vw;
 		padding: var(--padding);
-		background: var(--black);
+		background: var(--on-primary);
+		color: var(--primary);
+		transition: var(--color-transition);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -27,6 +30,7 @@ export default css`
 		padding: 0;
 		margin: 0;
 		flex-grow: 1;
+		height: 100%;
 	}
 
 	div.selector {
@@ -36,19 +40,20 @@ export default css`
 
 		width: auto;
 		height: auto;
-		transition: all 0.3s ease-in-out;
+		transition: all var(--transition-speed) ease-in-out;
 		pointer-events: none;
 	}
 
 	div.selector::before,
 	div.selector::after {
-		background: var(--white);
+		background: var(--primary);
+		color: var(--on-primary);
 		width: 100%;
-		height: var(--unit);
+		height: calc(var(--unit) * 0.4);
 		content: "";
 		position: absolute;
 		left: 0;
-		transition: all 0.3s ease-in-out;
+		transition: all var(--transition-speed) ease-in-out, var(--color-transition);
 	}
 	div.selector::before {
 		top: 0;
@@ -58,13 +63,14 @@ export default css`
 	}
 
 	nav ul li a {
-		color: var(--white);
+		color: var(--primary);
+		transition: var(--color-transition);
 		text-transform: lowercase;
 		cursor: pointer;
-		padding: calc(var(--unit) * 2);
+		padding: calc(var(--unit) * 0.6);
 		text-decoration: none;
 		text-align: center;
-		font-family: var(--swc-font, sans-serif);
+		font-family: var(--font, sans-serif);
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -80,7 +86,8 @@ export default css`
 	}
 
 	footer span {
-		color: var(--white);
+		color: var(--primary);
+		transition: var(--color-transition);
 	}
 
 	@media only screen and (max-width: 800px) {
