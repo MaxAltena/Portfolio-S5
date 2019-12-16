@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-  <title>Stage Portfolio S5 - Max Altena</title>
+  <title>Stageportfolio S5 - Max Altena</title>
   <link rel="icon" type="image/png" href="https://stofloos.nl/favicon.ico" />
   <style>
     :root {
@@ -14,17 +14,7 @@
       --primary: #ffffff;
       --on-primary: #000000;
 
-
-      --background: #eeeeee;
-      --surface: #ffffff;
-      --error: #b00020;
-      --on-primary: #ffffff;
-      --on-secondary: #000000;
-      --on-background: #000000;
-      --on-surface: #000000;
-      --on-error: #ffffff;
-
-      --unit: 1em;
+      --unit: 1rem;
       --padding: var(--unit);
       --nav-height: calc(var(--padding) * 3.5);
       --main-height: calc(100vh - var(--nav-height));
@@ -68,11 +58,36 @@
       }
     }
 
+    @font-face {
+      font-family: "Internacional";
+      src: url("https://portfolio.maxaltena.com/fonts/Internacional-Regular.otf");
+      font-weight: 400;
+    }
+
+    @font-face {
+      font-family: "Internacional";
+      src: url("https://portfolio.maxaltena.com/fonts/Internacional-SemiBold.otf");
+      font-weight: 600;
+    }
+
+    @font-face {
+      font-family: "Internacional";
+      src: url("https://portfolio.maxaltena.com/fonts/Internacional-Bold.otf");
+      font-weight: 700;
+    }
+
+    @font-face {
+      font-family: "Internacional";
+      src: url("https://portfolio.maxaltena.com/fonts/Internacional-Black.otf");
+      font-weight: 900;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: var(--font, sans-serif) !important;
+      font-weight: 600;
     }
 
     body {

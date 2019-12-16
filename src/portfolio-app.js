@@ -155,9 +155,15 @@ class PortfolioApp extends LitElement {
 			case "intro":
 				return html`
 					<div class="full">
-						<div class="intro block">
+						<div class="intro block repeatLeeswijzer">
 							<p>Stageportfolio S5</p>
-							<p style="margin-block-end: calc(var(--unit) * 12);">Max Altena</p>
+							<p style="margin-block-end: var(--unit);">Max Altena</p>
+							<p>leeswijzer</p>
+							<p>leeswijzer</p>
+							<p>leeswijzer</p>
+							<p>leeswijzer</p>
+							<p>leeswijzer</p>
+							<p>leeswijzer</p>
 							<p>leeswijzer</p>
 							<p>leeswijzer</p>
 							<p>leeswijzer</p>
@@ -167,7 +173,7 @@ class PortfolioApp extends LitElement {
 							${this.sections.map((section, i) => {
 								if (section.type === "intro")
 									return html`
-										<p>inhoud</p>
+										<p>inhoudsopgave</p>
 									`;
 								else
 									return html`

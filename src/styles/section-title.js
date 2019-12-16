@@ -9,9 +9,9 @@ export default css`
 		transform: rotate(-90deg) translateX(calc(var(--content-height) * -1));
 		transform-origin: left top;
 		margin: 0;
-		padding: calc(var(--unit) * 8) 0;
-		height: calc(var(--unit) * 18);
-		font-size: 2.5em;
+		height: calc(var(--unit) * 10);
+		font-size: 3rem;
+		font-weight: 900;
 		text-align: center;
 		text-transform: lowercase;
 		position: absolute;
@@ -26,7 +26,7 @@ export default css`
 		position: absolute;
 		left: 0;
 		width: var(--content-height);
-		height: calc(var(--unit) * 2);
+		height: calc(var(--unit) * 1.5);
 		background: var(--on-primary);
 		transition: var(--color-transition);
 	}

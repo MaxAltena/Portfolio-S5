@@ -49,7 +49,7 @@ export default css`
 		background: var(--primary);
 		color: var(--on-primary);
 		width: 100%;
-		height: calc(var(--unit) * 0.4);
+		height: calc(var(--unit) * 0.3);
 		content: "";
 		position: absolute;
 		left: 0;
@@ -71,6 +71,7 @@ export default css`
 		text-decoration: none;
 		text-align: center;
 		font-family: var(--font, sans-serif);
+		font-weight: 600;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -83,6 +84,7 @@ export default css`
 		justify-content: center;
 		align-items: center;
 		margin-inline-start: calc(var(--padding) * 2);
+		font-weight: 600;
 	}
 
 	footer span {

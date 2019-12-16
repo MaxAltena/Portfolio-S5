@@ -23,9 +23,13 @@ export default css`
 
 		height: 100%;
 
-		--local-size: calc(var(--unit) * 34);
+		--local-size: calc(var(--unit) * 10);
 
 		margin-inline-start: calc(var(--local-size) + var(--padding));
+	}
+
+	.block.intro {
+		overflow: hidden;
 	}
 
 	.block.intro p {
@@ -34,27 +38,30 @@ export default css`
 		margin: 0;
 		padding: 0;
 		text-align: center;
-		font-weight: bold;
-		font-size: 150%;
-		line-height: 175%;
+		font-family: var(--font, sans-serif);
+		font-weight: 700;
+		font-size: calc(var(--unit) * 1.5);
 	}
 
 	.block.intro.links p {
 		color: var(--on-primary);
 		transition: var(--color-transition);
-		font-weight: 600;
-		font-size: 200%;
-		line-height: 225%;
+		font-family: var(--font, sans-serif);
+		font-weight: 700;
+		font-size: calc(var(--unit) * 2.5);
+		line-height: calc(var(--unit) * 5);
 	}
 	.block.intro.links a {
 		color: var(--on-primary);
 		transition: var(--color-transition);
-		font-weight: 600;
-		font-size: 200%;
-		line-height: 225%;
+		font-family: var(--font, sans-serif);
+		font-weight: 700;
+		font-size: calc(var(--unit) * 2.5);
+		line-height: calc(var(--unit) * 5);
+		text-decoration: underline overline;
 	}
 	.block.intro.links a:hover,
 	.block.intro.links a:active {
-		text-decoration: none;
+		text-decoration: line-through;
 	}
 `;
