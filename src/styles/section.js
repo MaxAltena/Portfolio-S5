@@ -15,23 +15,11 @@ export default css`
 		margin-inline-start: var(--padding);
 	}
 
-	.innerLeeswijzer {
-		position: relative;
-		display: flex;
-		flex-direction: row;
-		top: 0;
-		height: 100%;
-		--local-size: calc(var(--unit) * 10);
-		margin-inline-start: calc(var(--local-size) + var(--padding));
-	}
-
 	.inner {
 		position: relative;
-		display: grid;
-		grid-gap: var(--padding);
-		grid-auto-flow: column;
-		grid-template-rows: 1fr 1fr;
-		grid-template-columns: repeat(auto, 1fr);
+		height: var(--content-height);
+		width: auto;
+		display: inline-flex;
 
 		--local-size: calc(var(--unit) * 10);
 		margin-inline-start: calc(var(--local-size) + var(--padding));
@@ -39,42 +27,5 @@ export default css`
 
 	.inner.last {
 		margin-inline-end: var(--padding);
-	}
-
-	.block.intro {
-		overflow: hidden;
-	}
-
-	.block.intro p {
-		color: var(--on-primary);
-		transition: var(--color-transition);
-		margin: 0;
-		padding: 0;
-		text-align: center;
-		font-family: var(--font, sans-serif);
-		font-weight: 700;
-		font-size: calc(var(--unit) * 1.5);
-	}
-
-	.block.intro.links p {
-		color: var(--on-primary);
-		transition: var(--color-transition);
-		font-family: var(--font, sans-serif);
-		font-weight: 700;
-		font-size: calc(var(--unit) * 2.5);
-		line-height: calc(var(--unit) * 5);
-	}
-	.block.intro.links a {
-		color: var(--on-primary);
-		transition: var(--color-transition);
-		font-family: var(--font, sans-serif);
-		font-weight: 700;
-		font-size: calc(var(--unit) * 2.5);
-		line-height: calc(var(--unit) * 5);
-		text-decoration: underline overline;
-	}
-	.block.intro.links a:hover,
-	.block.intro.links a:active {
-		text-decoration: line-through;
 	}
 `;

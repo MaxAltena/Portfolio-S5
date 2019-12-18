@@ -10,7 +10,7 @@ export default css`
 		transform-origin: left top;
 		margin: 0;
 		height: calc(var(--unit) * 10);
-		font-size: 3rem;
+		font-size: calc(var(--unit) * 3);
 		font-weight: 900;
 		text-align: center;
 		text-transform: lowercase;

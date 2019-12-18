@@ -5,12 +5,12 @@ export default css`
 		transform: rotate(90deg) translateY(calc(var(--nav-height) * -1));
 		transform-origin: top left;
 		position: sticky;
-		height: var(--nav-height);
+		height: calc(var(--nav-height) + 1px);
 		top: 0;
-		left: 0;
-		bottom: 0;
-		right: 0;
-		width: 100vw;
+		left: -1px;
+		bottom: -1px;
+		right: -1px;
+		width: calc(100vw + 2px);
 		padding: var(--padding);
 		background: var(--on-primary);
 		color: var(--primary);
@@ -20,7 +20,45 @@ export default css`
 		align-items: center;
 		box-sizing: border-box;
 		z-index: 1;
+
+		overflow-x: auto;
+		overflow-y: hidden;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
 	}
+	nav::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* nav::before {
+		content: "";
+		z-index: -1;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		width: 100vw;
+		height: var(--nav-height);
+		background: var(--on-primary);
+		color: var(--primary);
+		transition: var(--color-transition);
+	}
+
+	nav::after {
+		content: "";
+		z-index: -2;
+		position: absolute;
+		top: 0;
+		left: -5px;
+		right: -5px;
+		bottom: -5px;
+		width: calc(100vw + 10px);
+		height: calc(var(--nav-height) + 5px);
+		background: var(--on-primary);
+		color: var(--primary);
+		transition: var(--color-transition);
+	} */
 
 	nav ul {
 		display: flex;
@@ -31,13 +69,6 @@ export default css`
 		margin: 0;
 		flex-grow: 1;
 		height: 100%;
-		overflow-x: auto;
-		overflow-y: hidden;
-		scrollbar-width: none;
-		-ms-overflow-style: none;
-	}
-	nav ul::-webkit-scrollbar {
-		display: none;
 	}
 
 	div.selector {
@@ -69,6 +100,12 @@ export default css`
 		bottom: 0;
 	}
 
+	@media (max-width: 450px) {
+		nav ul li:last-child {
+			margin-inline-end: var(--padding);
+		}
+	}
+
 	nav ul li a {
 		color: var(--primary);
 		transition: var(--color-transition);
@@ -79,6 +116,7 @@ export default css`
 		text-align: center;
 		font-family: var(--font, sans-serif);
 		font-weight: 600;
+		font-size: var(--unit);
 		display: flex;
 		justify-content: center;
 		align-items: center;

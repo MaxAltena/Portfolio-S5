@@ -1,9 +1,9 @@
 import { LitElement, html } from "lit-element";
-import { app, navigation, section, sectionTitle, blocks } from "./styles";
+import { app, navigation, section, sectionTitle, blocks, leeswijzer, opdracht, producten, reflectie } from "./styles";
 
 class PortfolioApp extends LitElement {
 	static get styles() {
-		return [app, navigation, section, sectionTitle, blocks];
+		return [app, navigation, section, sectionTitle, blocks, leeswijzer, opdracht, producten, reflectie];
 	}
 
 	constructor() {
@@ -149,9 +149,9 @@ class PortfolioApp extends LitElement {
 		switch (section) {
 			case "Leeswijzer":
 				return html`
-					<div class="innerLeeswijzer">
-						<div class="full">
-							<div class="intro block repeatLeeswijzer">
+					<div class="inner leeswijzer">
+						<div class="full first">
+							<div class="intro block">
 								<p>Stageportfolio S5</p>
 								<p style="margin-block-end: var(--unit);">Max Altena</p>
 								<p>leeswijzer</p>
@@ -177,28 +177,49 @@ class PortfolioApp extends LitElement {
 			case "Opdracht":
 				return html`
 					<div class="inner">
-						<div class="block red"></div>
-						<div class="block red"></div>
-						<div class="block red"></div>
+						<div class="full">
+							<div class="block red"></div>
+							<div class="block green"></div>
+						</div>
+						<div class="full">
+							<div class="block darkBlue"></div>
+							<div class="block lightBlue"></div>
+						</div>
+						<div class="full">
+							<div class="block orange"></div>
+						</div>
 					</div>
 				`;
 			case "Producten":
 				return html`
 					<div class="inner">
-						<div class="block green"></div>
-						<div class="block green"></div>
-						<div class="block green"></div>
+						<div class="full">
+							<div class="block orange"></div>
+							<div class="block black"></div>
+						</div>
+						<div class="full">
+							<div class="block white"></div>
+							<div class="block red"></div>
+						</div>
+						<div class="full">
+							<div class="block darkBlue"></div>
+						</div>
 					</div>
 				`;
 			case "Reflectie":
 				return html`
 					<div class="inner last">
-						<div class="block darkBlue"></div>
-						<div class="block darkBlue"></div>
-						<div class="block darkBlue"></div>
-						<div class="block darkBlue"></div>
-						<div class="block darkBlue"></div>
-						<div class="block darkBlue"></div>
+						<div class="full">
+							<div class="block red"></div>
+							<div class="block green"></div>
+						</div>
+						<div class="full">
+							<div class="block darkBlue"></div>
+							<div class="block lightBlue"></div>
+						</div>
+						<div class="full">
+							<div class="block orange"></div>
+						</div>
 					</div>
 				`;
 			default:

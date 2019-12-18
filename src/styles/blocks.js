@@ -3,7 +3,8 @@ import { css } from "lit-element";
 export default css`
 	.block {
 		background: transparent;
-		color: var(--black);
+		color: var(--on-primary);
+		transition: var(--color-transition);
 
 		--local-size: calc(calc(var(--content-height) / 2) - calc(var(--padding) / 2));
 		width: var(--local-size);
@@ -14,21 +15,30 @@ export default css`
 		align-items: center;
 		flex-direction: column;
 	}
+
 	.full {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
 		height: 100%;
-	}
-	.full.end {
 		margin-inline-end: var(--padding);
 	}
-	.width1Half {
+	.full.end {
+		margin-inline-end: 0;
+	}
+
+	.width-1-half {
 		width: calc(var(--local-size) * 1.5);
 	}
-	.width2 {
+	.width-2 {
 		width: calc(var(--local-size) * 2);
+	}
+	.width-2-half {
+		width: calc(var(--local-size) * 2.5);
+	}
+	.width-3 {
+		width: calc(var(--local-size) * 3);
 	}
 
 	.document {
@@ -41,10 +51,10 @@ export default css`
 		margin: 0 var(--padding) 0 0;
 	}
 	.block.black {
-		background: var(--black);
+		background: var(--on-primary);
 	}
 	.block.white {
-		background: var(--white);
+		background: var(--primary);
 	}
 	.block.red {
 		background: var(--red);
@@ -70,10 +80,10 @@ export default css`
 	.block.orange,
 	.block.red,
 	.block.darkBlue {
-		color: var(--black);
+		color: var(--on-primary);
 	}
 	.block.black,
 	.block.lightBlue {
-		color: var(--white);
+		color: var(--primary);
 	}
 `;
