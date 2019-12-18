@@ -9,12 +9,7 @@ class PortfolioApp extends LitElement {
 	constructor() {
 		super();
 
-		this.sections = [
-			{ name: "Leeswijzer", type: "intro" },
-			{ name: "Opdracht", type: "text" },
-			{ name: "Producten", type: "text" },
-			{ name: "Reflectie", type: "text" }
-		];
+		this.sections = ["Leeswijzer", "Opdracht", "Producten", "Reflectie"];
 		this.clicked = false;
 		this.activeSection = 0;
 	}
@@ -150,47 +145,64 @@ class PortfolioApp extends LitElement {
 		document.removeEventListener("click", this.handleLinkClick.bind(this));
 	}
 
-	renderInnerSection(type) {
-		switch (type) {
-			case "intro":
+	renderInnerSection(section) {
+		switch (section) {
+			case "Leeswijzer":
 				return html`
-					<div class="full">
-						<div class="intro block repeatLeeswijzer">
-							<p>Stageportfolio S5</p>
-							<p style="margin-block-end: var(--unit);">Max Altena</p>
-							<p>leeswijzer</p>
-							<p>leeswijzer</p>
-							<p>leeswijzer</p>
-							<p>leeswijzer</p>
-							<p>leeswijzer</p>
-							<p>leeswijzer</p>
-							<p>leeswijzer</p>
-							<p>leeswijzer</p>
-							<p>leeswijzer</p>
-							<p>leeswijzer</p>
+					<div class="innerLeeswijzer">
+						<div class="full">
+							<div class="intro block repeatLeeswijzer">
+								<p>Stageportfolio S5</p>
+								<p style="margin-block-end: var(--unit);">Max Altena</p>
+								<p>leeswijzer</p>
+							</div>
+							<div class="intro links block lightBlue">
+								${this.sections.map((section, i) => {
+									if (section === "Leeswijzer")
+										return html`
+											<p>inhoudsopgave</p>
+										`;
+									else
+										return html`
+											<a @click="${() => this.updatePage(i)}" href="#${section.toLowerCase()}">
+												${section.toLowerCase()}</a
+											>
+										`;
+								})}
+							</div>
 						</div>
-						<div class="intro links block light-blue">
-							${this.sections.map((section, i) => {
-								if (section.type === "intro")
-									return html`
-										<p>inhoudsopgave</p>
-									`;
-								else
-									return html`
-										<a @click="${() => this.updatePage(i)}" href="#${section.name.toLowerCase()}">
-											${section.name.toLowerCase()}</a
-										>
-									`;
-							})}
-						</div>
+						<div class="full end width1Half document block green">leeswijzer pdf</div>
 					</div>
-					<div class="full width1Half document block green">leeswijzer pdf</div>
 				`;
-			case "text":
-			default:
+			case "Opdracht":
 				return html`
-					<div class="block orange"></div>
+					<div class="inner">
+						<div class="block red"></div>
+						<div class="block red"></div>
+						<div class="block red"></div>
+					</div>
 				`;
+			case "Producten":
+				return html`
+					<div class="inner">
+						<div class="block green"></div>
+						<div class="block green"></div>
+						<div class="block green"></div>
+					</div>
+				`;
+			case "Reflectie":
+				return html`
+					<div class="inner last">
+						<div class="block darkBlue"></div>
+						<div class="block darkBlue"></div>
+						<div class="block darkBlue"></div>
+						<div class="block darkBlue"></div>
+						<div class="block darkBlue"></div>
+						<div class="block darkBlue"></div>
+					</div>
+				`;
+			default:
+				return null;
 		}
 	}
 
@@ -201,11 +213,9 @@ class PortfolioApp extends LitElement {
 					${this.sections.map(
 						(section, i) =>
 							html`
-								<section data-target="${i}" name="${section.name.toLowerCase()}">
-									<h1>${section.name}</h1>
-									<div class="inner">
-										${this.renderInnerSection(section.type)}
-									</div>
+								<section data-target="${i}" name="${section.toLowerCase()}">
+									<h1>${section}</h1>
+									${this.renderInnerSection(section)}
 								</section>
 							`
 					)}
@@ -227,9 +237,9 @@ class PortfolioApp extends LitElement {
 											data-target="${i}"
 											@click="${() => this.setSelector(i)}"
 											class="link ${i === 0 ? " active" : ""}"
-											href="#${section.name.toLowerCase()}"
+											href="#${section.toLowerCase()}"
 										>
-											${section.name}</a
+											${section}</a
 										>
 									</li>
 								`

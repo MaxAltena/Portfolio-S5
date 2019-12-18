@@ -20,6 +20,8 @@ export default css`
 		justify-content: space-between;
 		align-items: center;
 		height: 100%;
+	}
+	.full.end {
 		margin-inline-end: var(--padding);
 	}
 	.width1Half {
@@ -44,6 +46,9 @@ export default css`
 	.block.white {
 		background: var(--white);
 	}
+	.block.red {
+		background: var(--red);
+	}
 	.block.green {
 		background: var(--green);
 	}
@@ -53,10 +58,10 @@ export default css`
 	.block.orange {
 		background: var(--orange);
 	}
-	.block.light-blue {
+	.block.lightBlue {
 		background: var(--light-blue);
 	}
-	.block.dark-blue {
+	.block.darkBlue {
 		background: var(--dark-blue);
 	}
 	.block.white,
@@ -64,11 +69,11 @@ export default css`
 	.block.yellow,
 	.block.orange,
 	.block.red,
-	.block.dark-blue {
+	.block.darkBlue {
 		color: var(--black);
 	}
 	.block.black,
-	.block.light-blue {
+	.block.lightBlue {
 		color: var(--white);
 	}
 `;

@@ -31,6 +31,13 @@ export default css`
 		margin: 0;
 		flex-grow: 1;
 		height: 100%;
+		overflow-x: auto;
+		overflow-y: hidden;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+	}
+	nav ul::-webkit-scrollbar {
+		display: none;
 	}
 
 	div.selector {
@@ -40,7 +47,7 @@ export default css`
 
 		width: auto;
 		height: auto;
-		transition: all var(--transition-speed) ease-in-out;
+		transition: all var(--transition-speed) var(--transition-timing);
 		pointer-events: none;
 	}
 
@@ -53,7 +60,7 @@ export default css`
 		content: "";
 		position: absolute;
 		left: 0;
-		transition: all var(--transition-speed) ease-in-out, var(--color-transition);
+		transition: all var(--transition-speed) var(--transition-timing);
 	}
 	div.selector::before {
 		top: 0;
