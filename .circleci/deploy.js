@@ -8,7 +8,8 @@ var config = {
 	port: 21,
 	localRoot: __dirname + "/../dist",
 	remoteRoot: process.env.FTPPATH,
-	include: ["*"]
+	include: ["*"],
+	deleteRemote: true
 };
 
 ftpDeploy.deploy(config, function(err) {
