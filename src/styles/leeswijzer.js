@@ -7,7 +7,7 @@ export default css`
 
 	.leeswijzer .block.intro p {
 		color: var(--on-primary);
-		transition: var(--color-transition);
+		transition: var(--transition);
 		margin: 0;
 		padding: 0;
 		text-align: center;
@@ -18,7 +18,7 @@ export default css`
 
 	.leeswijzer .links p {
 		color: var(--on-primary);
-		transition: var(--color-transition);
+		transition: var(--transition);
 		font-family: var(--font, sans-serif);
 		font-weight: 700;
 		font-size: calc(var(--unit) * 2.5);
@@ -26,7 +26,7 @@ export default css`
 	}
 	.leeswijzer .links a {
 		color: var(--on-primary);
-		transition: var(--color-transition);
+		transition: var(--transition);
 		font-family: var(--font, sans-serif);
 		font-weight: 700;
 		font-size: calc(var(--unit) * 2.5);

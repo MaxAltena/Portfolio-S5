@@ -9,7 +9,7 @@ class PortfolioApp extends LitElement {
 	constructor() {
 		super();
 
-		this.sections = ["Leeswijzer", "Opdracht", "Producten", "Reflectie"];
+		this.sections = ["leeswijzer", "opdracht", "producten", "reflectie"];
 		this.clicked = false;
 		this.activeSection = 0;
 	}
@@ -42,15 +42,16 @@ class PortfolioApp extends LitElement {
 	}
 
 	setPage(target) {
-		const scrollElement = this.shadowRoot.querySelector(".app");
 		const anchorElement = this.shadowRoot.querySelector(`section[data-target='${target}']`);
 
 		this.clicked = true;
-		scrollElement.scrollTo({
-			left: 0,
-			top: anchorElement ? anchorElement.offsetLeft - 25 : 0,
+
+		window.scroll({
+			left: anchorElement ? anchorElement.offsetLeft - 25 : 0,
+			top: 0,
 			behavior: "smooth"
 		});
+
 		setTimeout(() => (this.clicked = false), 1000);
 	}
 
@@ -77,21 +78,19 @@ class PortfolioApp extends LitElement {
 		if (scrollToHash) {
 			scrollToHash = scrollToHash.substr(1);
 
-			const scrollElement = this.shadowRoot.querySelector(".app");
-
 			const anchorElement = this.shadowRoot.querySelector(`section[name='${scrollToHash}']`);
 
 			this.clicked = true;
-			scrollElement.scrollTo({
-				left: 0,
-				top: anchorElement ? anchorElement.offsetLeft - 25 : 0,
+			window.scroll({
+				left: anchorElement ? anchorElement.offsetLeft - 25 : 0,
+				top: 0,
 				behavior: "smooth"
 			});
 			setTimeout(() => (this.clicked = false), 1000);
 		}
 	}
 
-	handleScroll(e) {
+	handleScroll() {
 		if (this.clicked) return;
 
 		const sections = this.shadowRoot.querySelectorAll("section");
@@ -99,8 +98,8 @@ class PortfolioApp extends LitElement {
 
 		sections.forEach(section => {
 			if (
-				section.offsetLeft - window.innerWidth / 2 <= e.target.scrollTop ||
-				section.offsetLeft + 50 <= e.target.scrollTop
+				section.offsetLeft - window.innerWidth / 2 <= window.scrollX ||
+				section.offsetLeft + 50 <= window.scrollX
 			)
 				biggerSections.push(section);
 		});
@@ -117,6 +116,9 @@ class PortfolioApp extends LitElement {
 	}
 
 	firstUpdated() {
+		// eslint-disable-next-line no-undef
+		scrollConverter.activate();
+
 		this.updatePage();
 
 		// Scroll to provided hash after loaded
@@ -127,7 +129,8 @@ class PortfolioApp extends LitElement {
 			const anchorElement = this.shadowRoot.querySelector(`section[name='${scrollToHash}']`);
 
 			this.section = anchorElement.dataset.target;
-			this.updatePage();
+
+			this.updatePage(this.section);
 		}, 500);
 	}
 
@@ -135,6 +138,7 @@ class PortfolioApp extends LitElement {
 		super.connectedCallback();
 
 		window.addEventListener("resize", this.handleResize.bind(this));
+		window.addEventListener("scroll", this.handleScroll.bind(this));
 		document.addEventListener("click", this.handleLinkClick.bind(this));
 	}
 
@@ -142,12 +146,13 @@ class PortfolioApp extends LitElement {
 		super.disconnectedCallback();
 
 		window.removeEventListener("resize", this.handleResize.bind(this));
+		window.removeEventListener("scroll", this.handleScroll.bind(this));
 		document.removeEventListener("click", this.handleLinkClick.bind(this));
 	}
 
 	renderInnerSection(section) {
 		switch (section) {
-			case "Leeswijzer":
+			case "leeswijzer":
 				return html`
 					<div class="inner leeswijzer">
 						<div class="full first">
@@ -158,39 +163,48 @@ class PortfolioApp extends LitElement {
 							</div>
 							<div class="intro links block lightBlue">
 								${this.sections.map((section, i) => {
-									if (section === "Leeswijzer")
+									if (section === "leeswijzer")
 										return html`
 											<p>inhoudsopgave</p>
 										`;
 									else
 										return html`
-											<a @click="${() => this.updatePage(i)}" href="#${section.toLowerCase()}">
+											<a
+												@click="${() => this.updatePage(i)}"
+												href="#${section.toLowerCase()}"
+												class="link"
+											>
 												${section.toLowerCase()}</a
 											>
 										`;
 								})}
 							</div>
 						</div>
-						<div class="full end width1Half document block green">leeswijzer pdf</div>
+						<div class="full end width-200 document block red">leeswijzer pdf</div>
 					</div>
 				`;
-			case "Opdracht":
+			case "opdracht":
 				return html`
 					<div class="inner">
 						<div class="full">
-							<div class="block red"></div>
-							<div class="block green"></div>
+							<div class="block text height-150">
+								<p>
+									De opdracht die voor mijn stage is vastgesteld is het maken van een chat module. //
+									TODO Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis aspernatur,
+									iure culpa iste consequatur hic quaerat saepe dolore aliquam voluptates ipsa aut
+									assumenda ea laudantium magnam atque quis natus. Iusto!
+								</p>
+							</div>
+							<div class="block green logo height-50">
+								<img src="./images/stofloos-logo.png" alt="Stofloos logo" />
+							</div>
 						</div>
-						<div class="full">
-							<div class="block darkBlue"></div>
-							<div class="block lightBlue"></div>
-						</div>
-						<div class="full">
-							<div class="block orange"></div>
+						<div class="full end image width-450">
+							<img src="./images/opdracht.jpg" alt="Scrumboard op een muur" />
 						</div>
 					</div>
 				`;
-			case "Producten":
+			case "producten":
 				return html`
 					<div class="inner">
 						<div class="full">
@@ -206,19 +220,18 @@ class PortfolioApp extends LitElement {
 						</div>
 					</div>
 				`;
-			case "Reflectie":
+			case "reflectie":
 				return html`
 					<div class="inner last">
-						<div class="full">
-							<div class="block red"></div>
-							<div class="block green"></div>
+						<div class="full text width-250">
+							<p>
+								Reflectie van mijn stageperiode // TODO Lorem ipsum dolor sit amet consectetur
+								adipisicing elit. Suscipit commodi esse at rerum quisquam voluptas! Minima quia tempore
+								neque sunt odio, cumque quaerat temporibus voluptas nihil ut exercitationem omnis totam.
+							</p>
 						</div>
-						<div class="full">
-							<div class="block darkBlue"></div>
-							<div class="block lightBlue"></div>
-						</div>
-						<div class="full">
-							<div class="block orange"></div>
+						<div class="full end image width-600">
+							<img src="./images/reflectie.jpg" alt="Max die hard aan het werk is" />
 						</div>
 					</div>
 				`;
@@ -229,48 +242,50 @@ class PortfolioApp extends LitElement {
 
 	render() {
 		return html`
-			<div class="app" @scroll="${this.handleScroll}">
-				<main>
+			<main>
+				${this.sections.map(
+					(section, i) =>
+						html`
+							<section
+								data-target="${i}"
+								name="${section.toLowerCase()}"
+								class="${section.toLowerCase()}"
+							>
+								<h1>${section.toLowerCase()}</h1>
+								${this.renderInnerSection(section)}
+							</section>
+						`
+				)}
+			</main>
+
+			<nav>
+				<style>
+					nav ul {
+						max-width: ${this.sections.length * 125}px;
+					}
+				</style>
+				<ul>
+					<div class="selector"></div>
 					${this.sections.map(
 						(section, i) =>
 							html`
-								<section data-target="${i}" name="${section.toLowerCase()}">
-									<h1>${section}</h1>
-									${this.renderInnerSection(section)}
-								</section>
+								<li>
+									<a
+										data-target="${i}"
+										@click="${() => this.setSelector(i)}"
+										class="link ${i === 0 ? " active" : ""}"
+										href="#${section.toLowerCase()}"
+									>
+										${section}</a
+									>
+								</li>
 							`
 					)}
-				</main>
-
-				<nav>
-					<style>
-						nav ul {
-							max-width: ${this.sections.length * 125}px;
-						}
-					</style>
-					<ul>
-						<div class="selector"></div>
-						${this.sections.map(
-							(section, i) =>
-								html`
-									<li>
-										<a
-											data-target="${i}"
-											@click="${() => this.setSelector(i)}"
-											class="link ${i === 0 ? " active" : ""}"
-											href="#${section.toLowerCase()}"
-										>
-											${section}</a
-										>
-									</li>
-								`
-						)}
-					</ul>
-					<footer>
-						<span>Stageportfolio S5 - Max Altena</span>
-					</footer>
-				</nav>
-			</div>
+				</ul>
+				<footer>
+					<span>Stageportfolio S5 - Max Altena</span>
+				</footer>
+			</nav>
 		`;
 	}
 }

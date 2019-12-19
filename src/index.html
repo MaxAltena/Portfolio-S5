@@ -4,6 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+	<meta name="mobile-web-app-capable" content="yes">
 	<title>Stageportfolio S5 - Max Altena</title>
 	<link rel="icon" type="image/png" href="https://stofloos.nl/favicon.ico" />
 	<style>
@@ -34,7 +35,7 @@
 			/* Transitions */
 			--transition-speed: 0.25s;
 			--transition-timing: ease-in-out;
-			--color-transition: color var(--transition-speed) var(--transition-timing),
+			--transition: color var(--transition-speed) var(--transition-timing),
 				background var(--transition-speed) var(--transition-timing),
 				background-color var(--transition-speed) var(--transition-timing),
 				border-color var(--transition-speed) var(--transition-timing), fill var(--transition-speed) var(--transition-timing),
@@ -219,11 +220,28 @@
 		}
 
 		body {
-			overflow: hidden;
+			min-width: 100vw;
+			height: 100vh;
+			scroll-snap-type: x proximity;
+			font-family: var(--font, sans-serif);
+			font-weight: 600;
+			color: var(--on-primary);
+			background: var(--primary);
+			transition: var(--transition);
+			overflow-y: hidden;
+			overflow-x: auto;
+			scrollbar-width: none;
+			-ms-overflow-style: none;
+		}
+
+		body::-webkit-scrollbar {
+			display: none;
+			width: 0 !important;
 		}
 	</style>
 	<script src="./vendor/webcomponents-loader.js"></script>
 	<script src="./vendor/custom-elements-es5-adapter.js"></script>
+	<script src="./vendor/scroll-converter.min.js"></script>
 </head>
 
 <body>

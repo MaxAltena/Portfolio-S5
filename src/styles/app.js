@@ -1,33 +1,18 @@
 import { css } from "lit-element";
 
 export default css`
-	.app {
-		overflow-y: scroll;
-		overflow-x: hidden;
-		scrollbar-width: none;
-		-ms-overflow-style: none;
-		transform: rotate(270deg) translateX(-100%);
-		transform-origin: top left;
+	main {
+		min-width: 100vw;
+		height: var(--main-height);
 		position: relative;
-		width: 100vh;
-		min-height: 100vw;
-		height: auto;
+		top: 0;
+		left: 0;
+		bottom: var(--nav-height);
+
 		background: var(--primary);
 		color: var(--on-primary);
-		transition: var(--color-transition);
-		scroll-snap-type: y proximity;
-	}
-	.app::-webkit-scrollbar {
-		display: none;
-	}
+		transition: var(--transition);
 
-	main {
-		transform: rotate(90deg) translateY(-100vh);
-		transform-origin: top left;
-		white-space: nowrap;
-		position: absolute;
-		top: 0;
-		height: var(--main-height);
 		display: inline-flex;
 		justify-content: space-between;
 		align-items: center;

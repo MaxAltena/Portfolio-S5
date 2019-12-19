@@ -2,24 +2,21 @@ import { css } from "lit-element";
 
 export default css`
 	nav {
-		transform: rotate(90deg) translateY(calc(var(--nav-height) * -1));
-		transform-origin: top left;
-		position: sticky;
-		height: calc(var(--nav-height) + 1px);
-		top: 0;
-		left: -1px;
-		bottom: -1px;
-		right: -1px;
-		width: calc(100vw + 2px);
+		position: fixed;
+		height: var(--nav-height);
+		left: 0;
+		bottom: 0;
+		right: 0;
+		width: 100vw;
 		padding: var(--padding);
 		background: var(--on-primary);
 		color: var(--primary);
-		transition: var(--color-transition);
+		transition: var(--transition);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		box-sizing: border-box;
-		z-index: 1;
+		z-index: 100;
 
 		overflow-x: auto;
 		overflow-y: hidden;
@@ -28,37 +25,8 @@ export default css`
 	}
 	nav::-webkit-scrollbar {
 		display: none;
+		width: 0 !important;
 	}
-
-	/* nav::before {
-		content: "";
-		z-index: -1;
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		width: 100vw;
-		height: var(--nav-height);
-		background: var(--on-primary);
-		color: var(--primary);
-		transition: var(--color-transition);
-	}
-
-	nav::after {
-		content: "";
-		z-index: -2;
-		position: absolute;
-		top: 0;
-		left: -5px;
-		right: -5px;
-		bottom: -5px;
-		width: calc(100vw + 10px);
-		height: calc(var(--nav-height) + 5px);
-		background: var(--on-primary);
-		color: var(--primary);
-		transition: var(--color-transition);
-	} */
 
 	nav ul {
 		display: flex;
@@ -108,7 +76,7 @@ export default css`
 
 	nav ul li a {
 		color: var(--primary);
-		transition: var(--color-transition);
+		transition: var(--transition);
 		text-transform: lowercase;
 		cursor: pointer;
 		padding: calc(var(--unit) * 0.6);
@@ -134,7 +102,7 @@ export default css`
 
 	footer span {
 		color: var(--primary);
-		transition: var(--color-transition);
+		transition: var(--transition);
 	}
 
 	@media only screen and (max-width: 800px) {

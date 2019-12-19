@@ -2,3 +2,4 @@ stofware-components
 **/*/dist/**/*
 node_modules
 dist
+vendor
