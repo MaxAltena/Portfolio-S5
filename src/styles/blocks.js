@@ -38,7 +38,16 @@ export default css`
 	.full.text {
 		justify-content: center;
 		padding: var(--padding);
+		font-size: var(--unit);
 		line-height: 1.8;
+	}
+
+	.full.document {
+		background: var(--document-gray);
+	}
+	.full.document iframe {
+		width: 100%;
+		height: 100%;
 	}
 
 	.width-50 {

@@ -1,17 +1,20 @@
 import { LitElement, html } from "lit-element";
-import { app, navigation, section, sectionTitle, blocks, leeswijzer, opdracht, producten, reflectie } from "./styles";
+import { app, navigation, section, blocks, leeswijzer, opdracht, producten, reflectie } from "./styles";
 
 class PortfolioApp extends LitElement {
 	static get styles() {
-		return [app, navigation, section, sectionTitle, blocks, leeswijzer, opdracht, producten, reflectie];
+		return [app, navigation, section, blocks, leeswijzer, opdracht, producten, reflectie];
 	}
 
 	constructor() {
 		super();
 
 		this.sections = ["leeswijzer", "opdracht", "producten", "reflectie"];
+		this.items = [{ slug: "input-component" }, { slug: "woordenlijst" }];
 		this.clicked = false;
 		this.activeSection = 0;
+		this.overlay = false;
+		this.activeItem = "";
 	}
 
 	updatePage(nextSection) {
@@ -63,30 +66,36 @@ class PortfolioApp extends LitElement {
 			if (typeof e.path[0].className === "object") return;
 
 			// Scroll to element when an a tag or element with the class link was clicked
-			if (e.path[0].className.includes("link")) {
-				scrollToHash = e.path[0].hash || window.location.hash;
-			}
+			if (e.path[0].className.includes("link")) scrollToHash = e.path[0].hash;
+			else if (e.path[0].className.includes("internal")) scrollToHash = e.path[0].hash;
+			else return;
 		} else if (e.originalTarget) {
 			// Firefox
 			if (typeof e.originalTarget.className === "object") return;
 
-			if (e.originalTarget.className.includes("link")) {
-				scrollToHash = e.originalTarget.hash || window.location.hash;
-			} else return;
+			if (e.originalTarget.className.includes("link")) scrollToHash = e.originalTarget.hash;
+			else if (e.originalTarget.className.includes("internal")) scrollToHash = e.originalTarget.hash;
+			else return;
 		} else return;
 
 		if (scrollToHash) {
 			scrollToHash = scrollToHash.substr(1);
 
-			const anchorElement = this.shadowRoot.querySelector(`section[name='${scrollToHash}']`);
+			if (this.sections.includes(scrollToHash)) {
+				const anchorElement = this.shadowRoot.querySelector(`section[name='${scrollToHash}']`);
 
-			this.clicked = true;
-			window.scroll({
-				left: anchorElement ? anchorElement.offsetLeft - 25 : 0,
-				top: 0,
-				behavior: "smooth"
-			});
-			setTimeout(() => (this.clicked = false), 1000);
+				this.clicked = true;
+				window.scroll({
+					left: anchorElement ? anchorElement.offsetLeft - 25 : 0,
+					top: 0,
+					behavior: "smooth"
+				});
+				setTimeout(() => (this.clicked = false), 1000);
+			} else {
+				this.overlay = true;
+				this.activeItem = scrollToHash;
+				this.requestUpdate();
+			}
 		}
 	}
 
@@ -125,13 +134,24 @@ class PortfolioApp extends LitElement {
 		setTimeout(() => {
 			let scrollToHash = window.location.hash;
 			scrollToHash = scrollToHash.substr(1);
+			if (!scrollToHash) return;
+			if (this.sections.includes(scrollToHash)) {
+				const anchorElement = this.shadowRoot.querySelector(`section[name='${scrollToHash}']`);
 
-			const anchorElement = this.shadowRoot.querySelector(`section[name='${scrollToHash}']`);
-
-			this.section = anchorElement.dataset.target;
-
-			this.updatePage(this.section);
+				if (anchorElement.dataset) this.updatePage(anchorElement.dataset.target);
+			} else if (this.items.find(_item => _item.slug === scrollToHash)) {
+				this.overlay = true;
+				this.activeItem = scrollToHash;
+				this.requestUpdate();
+			}
 		}, 500);
+	}
+
+	updated() {
+		/* eslint-disable no-undef */
+		if (this.overlay) scrollConverter.deactivate();
+		else if (!this.overlay) scrollConverter.activate();
+		/* eslint-enable no-undef */
 	}
 
 	connectedCallback() {
@@ -154,16 +174,24 @@ class PortfolioApp extends LitElement {
 		switch (section) {
 			case "leeswijzer":
 				return html`
-					<div class="inner leeswijzer">
+					<div class="inner">
 						<div class="full first">
 							<div class="intro block">
 								<p>Stageportfolio S5</p>
 								<p style="margin-block-end: var(--unit);">Max Altena</p>
-								<p>leeswijzer</p>
+								<p>
+									<a
+										href="https://docs.google.com/document/d/1cW7S2UyAR8aWSMqr0sNC_yPw1W04syNS8fzDCQRSw0U/"
+										target="_blank"
+										class="doc"
+										>leeswijzer</a
+									>
+								</p>
+								<p><a href="#woordenlijst" class="internal">woordenlijst</a></p>
 							</div>
 							<div class="intro links block lightBlue">
-								${this.sections.map((section, i) => {
-									if (section === "leeswijzer")
+								${this.sections.map((_section, i) => {
+									if (_section === "leeswijzer")
 										return html`
 											<p>inhoudsopgave</p>
 										`;
@@ -171,16 +199,22 @@ class PortfolioApp extends LitElement {
 										return html`
 											<a
 												@click="${() => this.updatePage(i)}"
-												href="#${section.toLowerCase()}"
+												href="#${_section.toLowerCase()}"
 												class="link"
 											>
-												${section.toLowerCase()}</a
+												${_section.toLowerCase()}</a
 											>
 										`;
 								})}
 							</div>
 						</div>
-						<div class="full end width-200 document block red">leeswijzer pdf</div>
+						<div class="full end width-150 document block">
+							<iframe
+								src="https://docs.google.com/document/d/1cW7S2UyAR8aWSMqr0sNC_yPw1W04syNS8fzDCQRSw0U/preview"
+								frameborder="0"
+								title="Leeswijzer"
+							></iframe>
+						</div>
 					</div>
 				`;
 			case "opdracht":
@@ -189,22 +223,30 @@ class PortfolioApp extends LitElement {
 						<div class="full">
 							<div class="block text height-150">
 								<p>
-									De opdracht die voor mijn stage is vastgesteld is het maken van een chat module. //
-									TODO Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis aspernatur,
-									iure culpa iste consequatur hic quaerat saepe dolore aliquam voluptates ipsa aut
-									assumenda ea laudantium magnam atque quis natus. Iusto!
+									De opdracht voor de stage was het ontwerpen en het ontwikkelen van een geïntegreerde
+									stofware chat module die generiek is opgezet en ingezet kan worden voor
+									verschillende projecten.
+								</p>
+								<p>
+									De module moet daarnaast nog aan enkele eisen voldoen. Deze zijn het gemakkelijk
+									overdraagbaar maken en de koppeling tussen front en back end werkend maken.
+								</p>
+								<p>
+									Er is stage gelopen bij
+									<a href="https://stofloos.nl/" target="_blank">stofloos</a> van 2 September 2019 tot
+									en met 24 Januari 2020.
 								</p>
 							</div>
-							<div class="block green logo height-50">
+							<a href="https://stofloos.nl/" target="_blank" class="block green logo height-50">
 								<img
 									src="https://portfolio.maxaltena.com/images/stofloos-logo.png"
 									alt="Stofloos logo"
 								/>
-							</div>
+							</a>
 						</div>
 						<div class="full end image width-450">
 							<img
-								src="https://portfolio.maxaltena.com/images/opdracht.jpg"
+								src="https://portfolio.maxaltena.com/images/s5-opdracht.jpg"
 								alt="Scrumboard op een muur"
 							/>
 						</div>
@@ -215,14 +257,15 @@ class PortfolioApp extends LitElement {
 					<div class="inner">
 						<div class="full">
 							<div class="block orange"></div>
-							<div class="block black"></div>
-						</div>
-						<div class="full">
-							<div class="block white"></div>
-							<div class="block red"></div>
-						</div>
-						<div class="full">
 							<div class="block darkBlue"></div>
+						</div>
+						<div class="full">
+							<div class="block red"></div>
+							<div class="block green"></div>
+						</div>
+						<div class="full">
+							<div class="block lightBlue"></div>
+							<div class="block yellow"></div>
 						</div>
 					</div>
 				`;
@@ -230,15 +273,20 @@ class PortfolioApp extends LitElement {
 				return html`
 					<div class="inner last">
 						<div class="full text width-250">
+							<p>Reflectie van mijn stageperiode.</p>
 							<p>
-								Reflectie van mijn stageperiode // TODO Lorem ipsum dolor sit amet consectetur
-								adipisicing elit. Suscipit commodi esse at rerum quisquam voluptas! Minima quia tempore
-								neque sunt odio, cumque quaerat temporibus voluptas nihil ut exercitationem omnis totam.
+								Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod odit est labore?
+								Repudiandae accusamus assumenda dolor dolorem amet, quam cum quasi quod mollitia
+								praesentium rerum nostrum, facilis laboriosam. Dignissimos, rem corporis tempora hic
+								voluptatum quas fuga consectetur nobis architecto non explicabo iste sequi culpa
+								provident similique eveniet odit ipsum, labore illo reprehenderit assumenda. Doloremque
+								tempora dolor ipsam illo dolore non laudantium deserunt laboriosam natus fuga, eos
+								nostrum odio incidunt quaerat reiciendis quo inventore ullam voluptatem.
 							</p>
 						</div>
 						<div class="full end image width-600">
 							<img
-								src="https://portfolio.maxaltena.com/images/reflectie.jpg"
+								src="https://portfolio.maxaltena.com/images/s5-reflectie.jpg"
 								alt="Max die hard aan het werk is"
 							/>
 						</div>
@@ -249,19 +297,42 @@ class PortfolioApp extends LitElement {
 		}
 	}
 
+	renderInnerOverlay(item) {
+		if (!item) return null;
+		if (!item.slug) return null;
+
+		switch (item.slug) {
+			case "woordenlijst":
+				return html`
+					<p>
+						Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus eos ipsum sequi, soluta amet
+						saepe cumque ipsa. Dolorem, ullam? Assumenda magnam, rem obcaecati ducimus consequatur nisi
+						vitae, quaerat dicta incidunt voluptate blanditiis voluptatum? Voluptate magni, nihil quisquam
+						porro eum explicabo illo quae, voluptatibus autem alias ipsam perspiciatis obcaecati. Ipsam
+						quidem repellendus expedita. Error, quo? Est eius quasi numquam dolore ad quis, molestias soluta
+						deleniti veniam voluptates. Veritatis mollitia animi, quam quo ab molestias ea sint dolore quis
+						eaque expedita excepturi facere unde porro. Accusamus eos voluptatibus assumenda temporibus hic
+						omnis nam impedit alias nisi unde? Quae consectetur cupiditate dignissimos facere!
+					</p>
+				`;
+			default:
+				return null;
+		}
+	}
+
 	render() {
 		return html`
 			<main>
 				${this.sections.map(
-					(section, i) =>
+					(_section, i) =>
 						html`
 							<section
 								data-target="${i}"
-								name="${section.toLowerCase()}"
-								class="${section.toLowerCase()}"
+								name="${_section.toLowerCase()}"
+								class="${_section.toLowerCase()}"
 							>
-								<h1>${section.toLowerCase()}</h1>
-								${this.renderInnerSection(section)}
+								<h1>${_section.toLowerCase()}</h1>
+								${this.renderInnerSection(_section)}
 							</section>
 						`
 				)}
@@ -276,25 +347,42 @@ class PortfolioApp extends LitElement {
 				<ul>
 					<div class="selector"></div>
 					${this.sections.map(
-						(section, i) =>
+						(_section, i) =>
 							html`
 								<li>
 									<a
 										data-target="${i}"
 										@click="${() => this.setSelector(i)}"
 										class="link ${i === 0 ? " active" : ""}"
-										href="#${section.toLowerCase()}"
+										href="#${_section.toLowerCase()}"
 									>
-										${section}</a
+										${_section.toLowerCase()}</a
 									>
 								</li>
 							`
 					)}
 				</ul>
 				<footer>
-					<span>Stageportfolio S5 - Max Altena</span>
+					<span>Stageportfolio S5 – Max Altena</span>
 				</footer>
 			</nav>
+
+			<div class="overlay" ?active="${this.overlay}">
+				<div class="container">
+					<div
+						@click="${() => {
+							this.overlay = false;
+							this.requestUpdate();
+						}}"
+						class="close"
+					>
+						<span>x</span><span>sluiten</span><span>x</span>
+					</div>
+
+					<h2>${this.activeItem}</h2>
+					${this.renderInnerOverlay(this.items.find(_item => _item.slug === this.activeItem))}
+				</div>
+			</div>
 		`;
 	}
 }

@@ -24,17 +24,8 @@ export default css`
 		font-size: calc(var(--unit) * 2.5);
 		line-height: calc(var(--unit) * 5);
 	}
-	.leeswijzer .links a {
-		color: var(--on-primary);
-		transition: var(--transition);
-		font-family: var(--font, sans-serif);
-		font-weight: 700;
+	.leeswijzer a {
 		font-size: calc(var(--unit) * 2.5);
 		line-height: calc(var(--unit) * 5);
-		text-decoration: underline overline;
-	}
-	.leeswijzer .links a:hover,
-	.leeswijzer .links a:active {
-		text-decoration: line-through;
 	}
 `;
