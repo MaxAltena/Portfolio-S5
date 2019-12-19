@@ -196,11 +196,17 @@ class PortfolioApp extends LitElement {
 								</p>
 							</div>
 							<div class="block green logo height-50">
-								<img src="./images/stofloos-logo.png" alt="Stofloos logo" />
+								<img
+									src="https://portfolio.maxaltena.com/images/stofloos-logo.png"
+									alt="Stofloos logo"
+								/>
 							</div>
 						</div>
 						<div class="full end image width-450">
-							<img src="./images/opdracht.jpg" alt="Scrumboard op een muur" />
+							<img
+								src="https://portfolio.maxaltena.com/images/opdracht.jpg"
+								alt="Scrumboard op een muur"
+							/>
 						</div>
 					</div>
 				`;
@@ -231,7 +237,10 @@ class PortfolioApp extends LitElement {
 							</p>
 						</div>
 						<div class="full end image width-600">
-							<img src="./images/reflectie.jpg" alt="Max die hard aan het werk is" />
+							<img
+								src="https://portfolio.maxaltena.com/images/reflectie.jpg"
+								alt="Max die hard aan het werk is"
+							/>
 						</div>
 					</div>
 				`;
