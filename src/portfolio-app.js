@@ -1,20 +1,32 @@
 import { LitElement, html } from "lit-element";
-import { app, navigation, section, blocks, leeswijzer, opdracht, producten, reflectie } from "./styles";
+import { app, navigation, overlay, section, blocks, leeswijzer, opdracht, producten, reflectie } from "./styles";
 
 class PortfolioApp extends LitElement {
 	static get styles() {
-		return [app, navigation, section, blocks, leeswijzer, opdracht, producten, reflectie];
+		return [app, navigation, overlay, section, blocks, leeswijzer, opdracht, producten, reflectie];
 	}
 
 	constructor() {
 		super();
 
-		this.sections = ["leeswijzer", "opdracht", "producten", "reflectie"];
-		this.items = [{ slug: "input-component" }, { slug: "woordenlijst" }];
-		this.clicked = false;
-		this.activeSection = 0;
 		this.overlay = false;
+		this.clicked = false;
+		this.sections = ["leeswijzer", "opdracht", "producten", "reflectie"];
+		this.activeSection = 0;
+		this.items = [
+			{ slug: "woordenlijst", title: "woordenlijst" },
+			{ slug: "leeswijzer", title: "leeswijzer" },
+			{ slug: "logboek", title: "logboek" },
+			{ slug: "projectplan", title: "projectplan" },
+			{ slug: "stofloos-data", title: "stofloos data" },
+			{ slug: "stofware-components", title: "stofware components" },
+			{ slug: "input-component", title: "stofware input component" }
+		];
 		this.activeItem = "";
+		this.words = [
+			{ word: "Stofloos", meaning: "Het bedrijf waar stage is gelopen." },
+			{ word: "Stofware", meaning: "De naam voor de software die Stofloos maakt." }
+		];
 	}
 
 	updatePage(nextSection) {
@@ -91,11 +103,7 @@ class PortfolioApp extends LitElement {
 					behavior: "smooth"
 				});
 				setTimeout(() => (this.clicked = false), 1000);
-			} else {
-				this.overlay = true;
-				this.activeItem = scrollToHash;
-				this.requestUpdate();
-			}
+			} else if (this.items.find(_item => _item.slug === scrollToHash)) this.toggleOverlay(true, scrollToHash);
 		}
 	}
 
@@ -124,6 +132,12 @@ class PortfolioApp extends LitElement {
 		this.setSelector(this.activeSection);
 	}
 
+	toggleOverlay(overlay, activeItem) {
+		this.overlay = overlay;
+		if (activeItem) this.activeItem = activeItem;
+		this.requestUpdate();
+	}
+
 	firstUpdated() {
 		// eslint-disable-next-line no-undef
 		scrollConverter.activate();
@@ -139,11 +153,7 @@ class PortfolioApp extends LitElement {
 				const anchorElement = this.shadowRoot.querySelector(`section[name='${scrollToHash}']`);
 
 				if (anchorElement.dataset) this.updatePage(anchorElement.dataset.target);
-			} else if (this.items.find(_item => _item.slug === scrollToHash)) {
-				this.overlay = true;
-				this.activeItem = scrollToHash;
-				this.requestUpdate();
-			}
+			} else if (this.items.find(_item => _item.slug === scrollToHash)) this.toggleOverlay(true, scrollToHash);
 		}, 500);
 	}
 
@@ -171,6 +181,8 @@ class PortfolioApp extends LitElement {
 	}
 
 	renderInnerSection(section) {
+		if (!section) return;
+
 		switch (section) {
 			case "leeswijzer":
 				return html`
@@ -223,9 +235,9 @@ class PortfolioApp extends LitElement {
 						<div class="full">
 							<div class="block text height-150">
 								<p>
-									De opdracht voor de stage was het ontwerpen en het ontwikkelen van een geïntegreerde
-									stofware chat module die generiek is opgezet en ingezet kan worden voor
-									verschillende projecten.
+									De opdracht voor mijn stage was het ontwerpen en het ontwikkelen van een
+									geïntegreerde stofware chat module die generiek is opgezet en ingezet kan worden
+									voor verschillende projecten.
 								</p>
 								<p>
 									De module moet daarnaast nog aan enkele eisen voldoen. Deze zijn het gemakkelijk
@@ -239,14 +251,14 @@ class PortfolioApp extends LitElement {
 							</div>
 							<a href="https://stofloos.nl/" target="_blank" class="block green logo height-50">
 								<img
-									src="https://portfolio.maxaltena.com/images/stofloos-logo.png"
+									src="https://portfolio.maxaltena.com/images/stofloos-logo-min.png"
 									alt="Stofloos logo"
 								/>
 							</a>
 						</div>
 						<div class="full end image width-450">
 							<img
-								src="https://portfolio.maxaltena.com/images/s5-opdracht.jpg"
+								src="https://portfolio.maxaltena.com/images/s5-opdracht-min.jpg"
 								alt="Scrumboard op een muur"
 							/>
 						</div>
@@ -256,16 +268,37 @@ class PortfolioApp extends LitElement {
 				return html`
 					<div class="inner">
 						<div class="full">
-							<div class="block orange"></div>
-							<div class="block darkBlue"></div>
+							<div class="block text">
+								<p>
+									Al deze producten zijn tijdens de stageperiode gemaakt. Sommige zijn gemaakt voor
+									school en andere in opdracht van stofloos zelf.
+								</p>
+								<p>
+									Bij elk product heb ik mijn uiterste best gedaan om het zo mooi en soms functioneel
+									mogelijk te maken.
+								</p>
+								<p>
+									In de leeswijzer wordt er naar alle producten verwezen. Voor de laatste keer
+									hieronder: de leeswijzer.
+								</p>
+							</div>
+							<div class="block darkBlue">leeswijzer</div>
 						</div>
 						<div class="full">
-							<div class="block red"></div>
-							<div class="block green"></div>
+							<div class="block orange">woordenlijst</div>
+							<div class="block green">logboek</div>
 						</div>
 						<div class="full">
-							<div class="block lightBlue"></div>
-							<div class="block yellow"></div>
+							<div class="block lightBlue">projectplan</div>
+							<a href="#stofloos-data" class="block stofloos-data internal"><span>stofloos data</span></a>
+						</div>
+						<div class="full">
+							<div class="block white">onderzoek 1</div>
+							<div class="block darkBlue">stofware components</div>
+						</div>
+						<div class="full">
+							<div class="block green">onderzoek 2</div>
+							<div class="block black">input-component</div>
 						</div>
 					</div>
 				`;
@@ -286,7 +319,7 @@ class PortfolioApp extends LitElement {
 						</div>
 						<div class="full end image width-600">
 							<img
-								src="https://portfolio.maxaltena.com/images/s5-reflectie.jpg"
+								src="https://portfolio.maxaltena.com/images/s5-reflectie-min.jpg"
 								alt="Max die hard aan het werk is"
 							/>
 						</div>
@@ -297,22 +330,49 @@ class PortfolioApp extends LitElement {
 		}
 	}
 
+	renderProducts(item) {
+		if (!item) return null;
+
+		switch (item) {
+			case "leeswijzer":
+				return html``;
+			case "logboek":
+				return html``;
+			case "woordenlijst":
+			default:
+				return null;
+		}
+	}
+
 	renderInnerOverlay(item) {
 		if (!item) return null;
-		if (!item.slug) return null;
 
 		switch (item.slug) {
 			case "woordenlijst":
 				return html`
+					${this.words.map(
+						_word => html`
+							<p>
+								<span class="word">${_word.word}</span>
+								<span>${_word.meaning}</span>
+							</p>
+						`
+					)}
+				`;
+			case "stofloos-data":
+				return html`
+					<img
+						src="https://portfolio.maxaltena.com/images/stofloos-data-min.gif"
+						alt="Stofloos Data website"
+					/>
 					<p>
-						Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus eos ipsum sequi, soluta amet
-						saepe cumque ipsa. Dolorem, ullam? Assumenda magnam, rem obcaecati ducimus consequatur nisi
-						vitae, quaerat dicta incidunt voluptate blanditiis voluptatum? Voluptate magni, nihil quisquam
-						porro eum explicabo illo quae, voluptatibus autem alias ipsam perspiciatis obcaecati. Ipsam
-						quidem repellendus expedita. Error, quo? Est eius quasi numquam dolore ad quis, molestias soluta
-						deleniti veniam voluptates. Veritatis mollitia animi, quam quo ab molestias ea sint dolore quis
-						eaque expedita excepturi facere unde porro. Accusamus eos voluptatibus assumenda temporibus hic
-						omnis nam impedit alias nisi unde? Quae consectetur cupiditate dignissimos facere!
+						Live website:
+						<a href="https://stofloosdata.nl/" target="_blank" class="external">https://stofloosdata.nl/</a>
+					</p>
+					<p>
+						Ik heb de website gemaakt met een PWA template die stofloos heeft. Functionaliteit & responsive
+						design heb ik gemaakt. Het originele design is gemaakt door de designer van stofloos, maar zaten
+						geen interacties of responsive design in.
 					</p>
 				`;
 			default:
@@ -369,18 +429,15 @@ class PortfolioApp extends LitElement {
 
 			<div class="overlay" ?active="${this.overlay}">
 				<div class="container">
-					<div
-						@click="${() => {
-							this.overlay = false;
-							this.requestUpdate();
-						}}"
-						class="close"
-					>
+					<div @click="${() => this.toggleOverlay(false)}" class="close">
 						<span>x</span><span>sluiten</span><span>x</span>
 					</div>
-
-					<h2>${this.activeItem}</h2>
-					${this.renderInnerOverlay(this.items.find(_item => _item.slug === this.activeItem))}
+					${this.activeItem
+						? html`
+								<h2>${this.items.find(_item => _item.slug === this.activeItem).title}</h2>
+								${this.renderInnerOverlay(this.items.find(_item => _item.slug === this.activeItem))}
+						  `
+						: null}
 				</div>
 			</div>
 		`;

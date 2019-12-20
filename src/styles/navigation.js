@@ -92,6 +92,12 @@ export default css`
 		-webkit-user-drag: none;
 	}
 
+	nav ul li a:active,
+	nav ul li a:hover,
+	nav ul li a:focus {
+		text-decoration: none;
+	}
+
 	footer {
 		display: flex;
 		justify-content: center;
