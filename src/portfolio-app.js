@@ -152,6 +152,8 @@ class PortfolioApp extends LitElement {
 	}
 
 	firstUpdated() {
+		const localhost = window.location.protocol === "http:" ? true : false;
+
 		// eslint-disable-next-line no-undef
 		scrollConverter.activate();
 
@@ -171,7 +173,7 @@ class PortfolioApp extends LitElement {
 
 		this.shadowRoot.querySelectorAll(".repeat-background").forEach(_background => {
 			const text = _background.dataset.name;
-			const font = "bold 25px Internacional";
+			const font = `bold 25px ${localhost ? "Internacional" : "InternacionalExt"}`;
 			const color = _background.dataset.color || "black";
 			const dimensions = this.getTextDimensions(text, font);
 
