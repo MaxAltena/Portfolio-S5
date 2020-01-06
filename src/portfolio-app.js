@@ -26,7 +26,12 @@ class PortfolioApp extends LitElement {
 		this.words = [
 			{ word: "Stofloos", meaning: "Het bedrijf waar stage is gelopen." },
 			{ word: "Stofware", meaning: "De naam voor de software die Stofloos maakt." },
-			{ word: "Monorepo", meaning: "1 grote repository met meerdere kleinere packages daarin." }
+			{
+				word: "Monorepo",
+				meaning:
+					"Een softwareontwikkelingsstrategie waarbij code voor veel projecten in dezelfde repository wordt opgeslagen."
+			},
+			{ word: "PWA", meaning: "Progressive Web App" }
 		];
 	}
 
@@ -175,6 +180,9 @@ class PortfolioApp extends LitElement {
 			const text = _background.dataset.name;
 			const font = `bold 25px ${localhost ? "Internacional" : "InternacionalExt"}`;
 			const color = _background.dataset.color || "black";
+			const backgroundColor = getComputedStyle(document.documentElement).getPropertyValue(
+				`--${_background.dataset.backgroundcolor}`
+			);
 			const dimensions = this.getTextDimensions(text, font);
 
 			let canvas = document.createElement("canvas");
@@ -182,18 +190,34 @@ class PortfolioApp extends LitElement {
 			canvas.setAttribute("width", dimensions.width + 20);
 
 			let context = canvas.getContext("2d");
+
 			context.font = font;
 			switch (color) {
 				case "white":
-					context.fillStyle = "rgba(255,255,255,0.75)";
+					context.fillStyle = "rgba(255,255,255,1)";
 					break;
 				case "black":
 				default:
-					context.fillStyle = "rgba(0,0,0,0.75)";
+					context.fillStyle = "rgba(0,0,0,1)";
 					break;
 			}
-			context.fillText(text, 10, 45 / 2);
-			_background.style.backgroundImage = "url(" + canvas.toDataURL("image/png") + ")";
+			context.fillText(text, 10, 45 * 0.6);
+			const id = this.makeID(4);
+			_background.classList.add(id);
+
+			let css = `.repeat-background.${id}:before{background:${backgroundColor};background-image: url(${canvas.toDataURL(
+					"image/png",
+					1
+				)});}`,
+				style = document.createElement("style");
+
+			this.shadowRoot.appendChild(style);
+
+			style.type = "text/css";
+			if (style.styleSheet) style.styleSheet.cssText = css;
+			else style.appendChild(document.createTextNode(css));
+
+			_background.style.background = "none";
 		});
 	}
 
@@ -226,6 +250,16 @@ class PortfolioApp extends LitElement {
 		context.font = font;
 		const metrics = context.measureText(text);
 		return metrics;
+	}
+
+	makeID(length) {
+		let result = "";
+		let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+		let charactersLength = characters.length;
+		for (let i = 0; i < length; i++) {
+			result += characters.charAt(Math.floor(Math.random() * charactersLength));
+		}
+		return result;
 	}
 
 	renderInnerSection(section) {
@@ -330,30 +364,75 @@ class PortfolioApp extends LitElement {
 									hieronder: de leeswijzer.
 								</p>
 							</div>
-							<div class="block darkBlue repeat-background" data-name="leeswijzer">leeswijzer</div>
+							<a
+								href="https://docs.google.com/document/d/1cW7S2UyAR8aWSMqr0sNC_yPw1W04syNS8fzDCQRSw0U/"
+								class="block darkBlue repeat-background external"
+								target="_blank"
+								data-name="leeswijzer"
+								data-backgroundcolor="darkBlue"
+								><span>leeswijzer</span></a
+							>
 						</div>
 						<div class="full">
 							<a
 								href="#woordenlijst"
 								class="block orange repeat-background internal"
 								data-name="woordenlijst"
-								>woordenlijst</a
+								data-backgroundcolor="orange"
+								><span>woordenlijst</span></a
 							>
-							<div class="block green repeat-background" data-name="logboek">logboek</div>
+							<a
+								href="https://docs.google.com/document/d/1K62zx8B6QyolTnbk-e-hvvbOhAChoIPzKODntn7oSpY/"
+								target="_blank"
+								class="block green repeat-background external"
+								data-name="logboek"
+								data-backgroundcolor="green"
+								><span>logboek</span></a
+							>
 						</div>
 						<div class="full">
-							<div class="block lightBlue repeat-background" data-name="projectplan" data-color="white">
-								projectplan
-							</div>
+							<a
+								href="https://docs.google.com/document/d/1a8lroPIhC11S_SQNRVg5YGFnMW1SH9XdeET7nsnA7J8/"
+								target="_blank"
+								class="block lightBlue repeat-background external"
+								data-name="projectplan"
+								data-color="white"
+								data-backgroundcolor="lightBlue"
+								><span>projectplan</span></a
+							>
 							<a href="#stofloos-data" class="block stofloos-data internal"><span>stofloos data</span></a>
 						</div>
 						<div class="full">
-							<div class="block white">onderzoek 1</div>
-							<div class="block darkBlue">stofware components</div>
+							<a
+								href="#"
+								class="block red repeat-background internal"
+								data-name="onderzoek 1"
+								data-backgroundcolor="red"
+								><span>onderzoek 1</span></a
+							>
+							<a
+								href="#"
+								class="block darkBlue repeat-background internal"
+								data-name="stofware components"
+								data-backgroundcolor="darkBlue"
+								><span>stofware components</span></a
+							>
 						</div>
 						<div class="full">
-							<div class="block green">onderzoek 2</div>
-							<div class="block black">input-component</div>
+							<a
+								href="#"
+								class="block green repeat-background internal"
+								data-name="onderzoek 2"
+								data-backgroundcolor="green"
+								><span>onderzoek 2</span></a
+							>
+							<a
+								href="#"
+								class="block orange repeat-background internal"
+								data-name="input component"
+								data-backgroundcolor="orange"
+								><span>input component</span></a
+							>
 						</div>
 					</div>
 				`;
@@ -410,6 +489,7 @@ class PortfolioApp extends LitElement {
 						Live website:
 						<a href="https://stofloosdata.nl/" target="_blank" class="external">https://stofloosdata.nl/</a>
 					</p>
+					<p>De Stofloos Data website is gemaakt in opdracht van Stofloos.</p>
 					<p>
 						Ik heb de website gemaakt met een PWA template die stofloos heeft. Functionaliteit & responsive
 						design heb ik gemaakt. Het originele design is gemaakt door de designer van stofloos, maar zaten

@@ -5,11 +5,41 @@ export default css`
 		padding: var(--padding);
 	}
 	.producten .repeat-background {
+		position: relative;
+		overflow: hidden;
+		/* background-repeat: repeat;
+		background-position: center; */
+	}
+	.producten .repeat-background:active:before,
+	.producten .repeat-background:hover:before,
+	.producten .repeat-background:focus:before {
+		transform: scale(1);
+	}
+	.producten .repeat-background:before {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		width: 100%;
+		height: 100%;
+		transition: transform calc(var(--transition-speed) * 0.5) var(--transition-timing), var(--transition);
 		background-repeat: repeat;
 		background-position: center;
+		transform: scale(1.1);
+	}
+	.producten a span {
+		pointer-events: none;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		z-index: 1;
+		text-align: center;
 	}
 	.producten a {
-		font-size: calc(var(--unit) * 2);
+		font-size: calc(var(--unit) * 2.5);
 		cursor: pointer;
 	}
 	.producten .stofloos-data {
@@ -48,12 +78,12 @@ export default css`
 	}
 	.producten .stofloos-data span {
 		pointer-events: none;
-		font-size: calc(var(--unit) * 2);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		color: var(--white);
 		z-index: 1;
+		text-align: center;
 	}
 `;

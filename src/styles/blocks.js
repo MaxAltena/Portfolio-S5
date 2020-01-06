@@ -160,10 +160,10 @@ export default css`
 		background: var(--orange);
 	}
 	.block.lightBlue {
-		background: var(--light-blue);
+		background: var(--lightBlue);
 	}
 	.block.darkBlue {
-		background: var(--dark-blue);
+		background: var(--darkBlue);
 	}
 	.block.white,
 	.block.green,
