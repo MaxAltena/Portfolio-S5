@@ -9,6 +9,8 @@ export default css`
 		bottom: 0;
 		background: var(--primary);
 		color: var(--on-primary);
+		width: 100%;
+		height: auto;
 		opacity: 0;
 		pointer-events: none;
 		transition: opacity calc(var(--transition-speed) * 0.75) var(--transition-timing), var(--transition);
