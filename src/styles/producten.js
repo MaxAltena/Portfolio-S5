@@ -4,6 +4,14 @@ export default css`
 	.producten .block.text {
 		padding: var(--padding);
 	}
+	.producten .repeat-background {
+		background-repeat: repeat;
+		background-position: center;
+	}
+	.producten a {
+		font-size: calc(var(--unit) * 2);
+		cursor: pointer;
+	}
 	.producten .stofloos-data {
 		background-color: #2d61ff;
 		background-image: url("https://portfolio.maxaltena.com/images/stofloos-data-min.gif");
@@ -13,12 +21,10 @@ export default css`
 		color: var(--white);
 		transition: background-size calc(var(--transition-speed) * 0.5) var(--transition-timing), var(--transition);
 		position: relative;
-		font-size: calc(var(--unit) * 2);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		cursor: pointer;
 		user-select: none;
 		-webkit-user-drag: none;
 	}

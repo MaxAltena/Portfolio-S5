@@ -25,7 +25,8 @@ class PortfolioApp extends LitElement {
 		this.activeItem = "";
 		this.words = [
 			{ word: "Stofloos", meaning: "Het bedrijf waar stage is gelopen." },
-			{ word: "Stofware", meaning: "De naam voor de software die Stofloos maakt." }
+			{ word: "Stofware", meaning: "De naam voor de software die Stofloos maakt." },
+			{ word: "Monorepo", meaning: "1 grote repository met meerdere kleinere packages daarin." }
 		];
 	}
 
@@ -61,8 +62,13 @@ class PortfolioApp extends LitElement {
 
 		this.clicked = true;
 
+		let padding = getComputedStyle(document.documentElement).getPropertyValue("--padding");
+		padding = padding.slice(0, -3);
+		padding = parseInt(padding);
+		const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+
 		window.scroll({
-			left: anchorElement ? anchorElement.offsetLeft - 25 : 0,
+			left: anchorElement ? anchorElement.offsetLeft - padding * rem : 0,
 			top: 0,
 			behavior: "smooth"
 		});
@@ -97,11 +103,18 @@ class PortfolioApp extends LitElement {
 				const anchorElement = this.shadowRoot.querySelector(`section[name='${scrollToHash}']`);
 
 				this.clicked = true;
+
+				let padding = getComputedStyle(document.documentElement).getPropertyValue("--padding");
+				padding = padding.slice(0, -3);
+				padding = parseInt(padding);
+				const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+
 				window.scroll({
-					left: anchorElement ? anchorElement.offsetLeft - 25 : 0,
+					left: anchorElement ? anchorElement.offsetLeft - padding * rem : 0,
 					top: 0,
 					behavior: "smooth"
 				});
+
 				setTimeout(() => (this.clicked = false), 1000);
 			} else if (this.items.find(_item => _item.slug === scrollToHash)) this.toggleOverlay(true, scrollToHash);
 		}
@@ -155,6 +168,31 @@ class PortfolioApp extends LitElement {
 				if (anchorElement.dataset) this.updatePage(anchorElement.dataset.target);
 			} else if (this.items.find(_item => _item.slug === scrollToHash)) this.toggleOverlay(true, scrollToHash);
 		}, 500);
+
+		this.shadowRoot.querySelectorAll(".repeat-background").forEach(_background => {
+			const text = _background.dataset.name;
+			const font = "bold 25px Internacional";
+			const color = _background.dataset.color || "black";
+			const dimensions = this.getTextDimensions(text, font);
+
+			let canvas = document.createElement("canvas");
+			canvas.setAttribute("height", 45);
+			canvas.setAttribute("width", dimensions.width + 20);
+
+			let context = canvas.getContext("2d");
+			context.font = font;
+			switch (color) {
+				case "white":
+					context.fillStyle = "rgba(255,255,255,0.75)";
+					break;
+				case "black":
+				default:
+					context.fillStyle = "rgba(0,0,0,0.75)";
+					break;
+			}
+			context.fillText(text, 10, 45 / 2);
+			_background.style.backgroundImage = "url(" + canvas.toDataURL("image/png") + ")";
+		});
 	}
 
 	updated() {
@@ -178,6 +216,14 @@ class PortfolioApp extends LitElement {
 		window.removeEventListener("resize", this.handleResize.bind(this));
 		window.removeEventListener("scroll", this.handleScroll.bind(this));
 		document.removeEventListener("click", this.handleLinkClick.bind(this));
+	}
+
+	getTextDimensions(text, font) {
+		let canvas = document.createElement("canvas");
+		let context = canvas.getContext("2d");
+		context.font = font;
+		const metrics = context.measureText(text);
+		return metrics;
 	}
 
 	renderInnerSection(section) {
@@ -282,14 +328,21 @@ class PortfolioApp extends LitElement {
 									hieronder: de leeswijzer.
 								</p>
 							</div>
-							<div class="block darkBlue">leeswijzer</div>
+							<div class="block darkBlue repeat-background" data-name="leeswijzer">leeswijzer</div>
 						</div>
 						<div class="full">
-							<div class="block orange">woordenlijst</div>
-							<div class="block green">logboek</div>
+							<a
+								href="#woordenlijst"
+								class="block orange repeat-background internal"
+								data-name="woordenlijst"
+								>woordenlijst</a
+							>
+							<div class="block green repeat-background" data-name="logboek">logboek</div>
 						</div>
 						<div class="full">
-							<div class="block lightBlue">projectplan</div>
+							<div class="block lightBlue repeat-background" data-name="projectplan" data-color="white">
+								projectplan
+							</div>
 							<a href="#stofloos-data" class="block stofloos-data internal"><span>stofloos data</span></a>
 						</div>
 						<div class="full">
@@ -325,20 +378,6 @@ class PortfolioApp extends LitElement {
 						</div>
 					</div>
 				`;
-			default:
-				return null;
-		}
-	}
-
-	renderProducts(item) {
-		if (!item) return null;
-
-		switch (item) {
-			case "leeswijzer":
-				return html``;
-			case "logboek":
-				return html``;
-			case "woordenlijst":
 			default:
 				return null;
 		}

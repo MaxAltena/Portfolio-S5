@@ -73,6 +73,7 @@ export default css`
 		margin: 0 auto;
 		max-width: 1280px;
 		width: calc(100% - calc(var(--padding) * 2));
+		text-align: center;
 	}
 	@media only screen and (min-width: 601px) {
 		.overlay .container {
@@ -83,6 +84,11 @@ export default css`
 		.overlay .container {
 			width: 75%;
 		}
+	}
+
+	.overlay p,
+	.overlay div {
+		text-align: left;
 	}
 
 	.overlay p .word {
@@ -96,5 +102,6 @@ export default css`
 
 	.overlay img {
 		max-width: 100%;
+		max-height: 75vh;
 	}
 `;
