@@ -20,6 +20,13 @@ export default css`
 		font-size: var(--unit);
 	}
 
+	.divider {
+		height: 100%;
+		width: calc(var(--unit) * 1.5);
+		background: var(--on-primary);
+		margin-inline-end: var(--padding);
+	}
+
 	.full {
 		display: flex;
 		flex-direction: column;
@@ -167,14 +174,14 @@ export default css`
 	}
 	.block.white,
 	.block.green,
-	.block.yellow,
 	.block.orange,
 	.block.red,
 	.block.darkBlue {
 		color: var(--on-primary);
 	}
 	.block.black,
-	.block.lightBlue {
+	.block.lightBlue,
+	.block.yellow {
 		color: var(--primary);
 	}
 `;

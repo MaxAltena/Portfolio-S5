@@ -104,6 +104,6 @@ export default css`
 
 	.overlay img {
 		max-width: 100%;
-		max-height: 75vh;
+		max-height: 70vh;
 	}
 `;

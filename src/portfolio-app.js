@@ -25,7 +25,7 @@ class PortfolioApp extends LitElement {
 		this.activeItem = "";
 		this.words = [
 			{ word: "Stofloos", meaning: "Het bedrijf waar stage is gelopen." },
-			{ word: "Stofware", meaning: "De naam voor de software die Stofloos maakt." },
+			{ word: "Stofware", meaning: "Naam voor software die Stofloos maakt." },
 			{
 				word: "Monorepo",
 				meaning:
@@ -272,7 +272,9 @@ class PortfolioApp extends LitElement {
 						<div class="full first">
 							<div class="intro block">
 								<p>Stageportfolio S5</p>
-								<p style="margin-block-end: var(--unit);">Max Altena</p>
+								<a href="https://maxaltena.com/" target="_blank" style="margin-block-end: var(--unit);"
+									>Max Altena</a
+								>
 								<p>
 									<a
 										href="https://docs.google.com/document/d/1cW7S2UyAR8aWSMqr0sNC_yPw1W04syNS8fzDCQRSw0U/"
@@ -352,8 +354,8 @@ class PortfolioApp extends LitElement {
 						<div class="full">
 							<div class="block text">
 								<p>
-									Al deze producten zijn tijdens de stageperiode gemaakt. Sommige zijn gemaakt voor
-									school en andere in opdracht van stofloos zelf.
+									Al deze producten zijn tijdens de stageperiode gemaakt. De volgende producten zijn
+									gemaakt vanuit het project.
 								</p>
 								<p>
 									Bij elk product heb ik mijn uiterste best gedaan om het zo mooi en soms functioneel
@@ -361,7 +363,7 @@ class PortfolioApp extends LitElement {
 								</p>
 								<p>
 									In de leeswijzer wordt er naar alle producten verwezen. Voor de laatste keer
-									hieronder: de leeswijzer.
+									hieronder:<br />de leeswijzer.
 								</p>
 							</div>
 							<a
@@ -400,37 +402,56 @@ class PortfolioApp extends LitElement {
 								data-backgroundcolor="lightBlue"
 								><span>projectplan</span></a
 							>
-							<a href="#stofloos-data" class="block stofloos-data internal"><span>stofloos data</span></a>
+							<a
+								href="#"
+								class="block darkBlue repeat-background internal"
+								data-name="onderzoek 1"
+								data-backgroundcolor="darkBlue"
+								><span>onderzoek 1</span></a
+							>
 						</div>
 						<div class="full">
 							<a
 								href="#"
 								class="block red repeat-background internal"
-								data-name="onderzoek 1"
-								data-backgroundcolor="red"
-								><span>onderzoek 1</span></a
-							>
-							<a
-								href="#"
-								class="block darkBlue repeat-background internal"
-								data-name="stofware components"
-								data-backgroundcolor="darkBlue"
-								><span>stofware components</span></a
-							>
-						</div>
-						<div class="full">
-							<a
-								href="#"
-								class="block green repeat-background internal"
 								data-name="onderzoek 2"
-								data-backgroundcolor="green"
+								data-backgroundcolor="red"
 								><span>onderzoek 2</span></a
 							>
 							<a
 								href="#"
-								class="block orange repeat-background internal"
+								class="block yellow repeat-background internal"
+								data-name="onderzoek 3"
+								data-color="white"
+								data-backgroundcolor="yellow"
+								><span>onderzoek 3</span></a
+							>
+						</div>
+						<div class="divider"></div>
+						<div class="full">
+							<div class="block text">
+								<p>
+									De volgende producten zijn gemaakt in opdracht van stofloos tijdens mijn
+									stageperiode.
+								</p>
+								<p>Hier heb ik net als de rest van mijn producten mijn uiterste best op gedaan.</p>
+							</div>
+							<a href="#stofloos-data" class="block stofloos-data internal"><span>stofloos data</span></a>
+						</div>
+						<div class="full end">
+							<a
+								href="#"
+								class="block lightBlue repeat-background internal"
+								data-name="stofware components"
+								data-color="white"
+								data-backgroundcolor="lightBlue"
+								><span>stofware components</span></a
+							>
+							<a
+								href="#"
+								class="block red repeat-background internal"
 								data-name="input component"
-								data-backgroundcolor="orange"
+								data-backgroundcolor="red"
 								><span>input component</span></a
 							>
 						</div>
@@ -544,7 +565,12 @@ class PortfolioApp extends LitElement {
 					)}
 				</ul>
 				<footer>
-					<span>Stageportfolio S5 – Max Altena</span>
+					<span
+						>Stageportfolio S5 –
+						<a href="https://maxaltena.com/" target="_blank" style="color: var(--primary);"
+							>Max Altena</a
+						></span
+					>
 				</footer>
 			</nav>
 
