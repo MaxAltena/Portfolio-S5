@@ -109,7 +109,7 @@ class PortfolioApp extends LitElement {
 			if (e.originalTarget.className.includes("link")) scrollToHash = e.originalTarget.hash;
 			else if (e.originalTarget.className.includes("internal")) scrollToHash = e.originalTarget.hash;
 			else return;
-		} else return;
+		} else scrollToHash = e.composedPath()[0].hash;
 
 		if (scrollToHash) {
 			scrollToHash = scrollToHash.substr(1);
@@ -275,6 +275,8 @@ class PortfolioApp extends LitElement {
 	renderInnerSection(section) {
 		if (!section) return;
 
+		const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
 		switch (section) {
 			case "leeswijzer":
 				return html`
@@ -314,13 +316,31 @@ class PortfolioApp extends LitElement {
 								})}
 							</div>
 						</div>
-						<div class="full end width-150 document block">
-							<iframe
-								src="https://docs.google.com/document/d/1cW7S2UyAR8aWSMqr0sNC_yPw1W04syNS8fzDCQRSw0U/preview"
-								frameborder="0"
-								title="Leeswijzer"
-							></iframe>
-						</div>
+						${isSafari
+							? html`
+									<div class="full center end width-100 block" style="padding: var(--padding);">
+										<a
+											href="https://docs.google.com/document/d/1cW7S2UyAR8aWSMqr0sNC_yPw1W04syNS8fzDCQRSw0U/"
+											target="_blank"
+											class="doc"
+											>leeswijzer</a
+										>
+										<p>
+											Hier zou eigenlijk een groot iframe komen met het leeswijzer document erin,
+											maar omdat <strong>Safari</strong> niet zo leuk is doet hij het niet. Dus je
+											hebt deze leuke tekst met een link.
+										</p>
+									</div>
+							  `
+							: html`
+									<div class="full end width-150 document block">
+										<iframe
+											src="https://docs.google.com/document/d/1cW7S2UyAR8aWSMqr0sNC_yPw1W04syNS8fzDCQRSw0U/preview"
+											frameborder="0"
+											title="Leeswijzer"
+										></iframe>
+									</div>
+							  `}
 					</div>
 				`;
 			case "opdracht":

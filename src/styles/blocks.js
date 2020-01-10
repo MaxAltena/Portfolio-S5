@@ -41,6 +41,10 @@ export default css`
 	.full.image {
 		max-width: calc(100vw - calc(var(--padding) * 2));
 	}
+	.full.center {
+		justify-content: center;
+		align-items: center;
+	}
 
 	.full.text {
 		justify-content: center;

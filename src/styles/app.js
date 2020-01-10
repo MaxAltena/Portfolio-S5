@@ -16,6 +16,9 @@ export default css`
 		display: inline-flex;
 		justify-content: space-between;
 		align-items: center;
+
+		overflow-x: auto;
+		overflow-y: hidden;
 	}
 
 	h1 {
