@@ -7,8 +7,6 @@ export default css`
 	.producten .repeat-background {
 		position: relative;
 		overflow: hidden;
-		/* background-repeat: repeat;
-		background-position: center; */
 	}
 	.producten .repeat-background:active:before,
 	.producten .repeat-background:hover:before,

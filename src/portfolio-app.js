@@ -15,23 +15,33 @@ class PortfolioApp extends LitElement {
 		this.activeSection = 0;
 		this.items = [
 			{ slug: "woordenlijst", title: "woordenlijst" },
-			{ slug: "leeswijzer", title: "leeswijzer" },
-			{ slug: "logboek", title: "logboek" },
-			{ slug: "projectplan", title: "projectplan" },
 			{ slug: "stofloos-data", title: "stofloos data" },
 			{ slug: "stofware-components", title: "stofware components" },
-			{ slug: "input-component", title: "stofware input component" }
+			{ slug: "input-component", title: "stofware input component" },
+			{ slug: "product", title: "chat module" }
 		];
 		this.activeItem = "";
 		this.words = [
-			{ word: "Stofloos", meaning: "Het bedrijf waar stage is gelopen." },
-			{ word: "Stofware", meaning: "Naam voor software die Stofloos maakt." },
+			{ word: "Stofloos", meaning: "Bedrijf waar stage is gelopen." },
+			{ word: "Stofware", meaning: "Naam voor software die Stofloos ontwikkelt." },
+			{
+				word: "Datastudio",
+				meaning: "Webapplicatie waarmee je data dashboards kunt maken met je eigen databronnen."
+			},
+			{
+				word: "Repository",
+				meaning: "Map of opslagruimte waar (code) projecten kunnen worden opgeslagen. Afkorting is 'repo'."
+			},
 			{
 				word: "Monorepo",
 				meaning:
-					"Een softwareontwikkelingsstrategie waarbij code voor veel projecten in dezelfde repository wordt opgeslagen."
+					"Softwareontwikkelingsstrategie waarbij code voor veel projecten in dezelfde repository wordt opgeslagen."
 			},
-			{ word: "PWA", meaning: "Progressive Web App" }
+			{
+				word: "PWA",
+				meaning:
+					"Progressieve Web Applicatie is een soort applicatiesoftware die via het web wordt geleverd en is gebouwd met behulp van veelgebruikte webtechnologieën, waaronder HTML, CSS en JavaScript."
+			}
 		];
 	}
 
@@ -186,8 +196,8 @@ class PortfolioApp extends LitElement {
 			const dimensions = this.getTextDimensions(text, font);
 
 			let canvas = document.createElement("canvas");
-			canvas.setAttribute("height", 45);
-			canvas.setAttribute("width", dimensions.width + 20);
+			canvas.setAttribute("height", 60);
+			canvas.setAttribute("width", dimensions.width + 30);
 
 			let context = canvas.getContext("2d");
 
@@ -201,7 +211,7 @@ class PortfolioApp extends LitElement {
 					context.fillStyle = "rgba(0,0,0,1)";
 					break;
 			}
-			context.fillText(text, 10, 45 * 0.6);
+			context.fillText(text, 15, 60 * 0.6);
 			const id = this.makeID(4);
 			_background.classList.add(id);
 
@@ -403,28 +413,44 @@ class PortfolioApp extends LitElement {
 								><span>projectplan</span></a
 							>
 							<a
-								href="#"
-								class="block darkBlue repeat-background internal"
-								data-name="onderzoek 1"
-								data-backgroundcolor="darkBlue"
-								><span>onderzoek 1</span></a
+								href="https://docs.google.com/document/d/1CaszETCNuhY-0TPfQCgh7yk2IWd4He8Jg63xCEJUq-Y/"
+								class="block red repeat-background external"
+								data-name="klant interviews"
+								data-backgroundcolor="red"
+								><span>klant interviews</span></a
 							>
 						</div>
 						<div class="full">
 							<a
-								href="#"
-								class="block red repeat-background internal"
-								data-name="onderzoek 2"
-								data-backgroundcolor="red"
-								><span>onderzoek 2</span></a
+								href="https://docs.google.com/document/d/1tCnu7FOvjtm3QTP__BQxucHydDw0d0Hp3GpIUp8hV9s/"
+								class="block green repeat-background external"
+								data-name="technische pocs"
+								data-backgroundcolor="green"
+								><span>technische pocs</span></a
 							>
 							<a
-								href="#"
+								href="https://docs.google.com/document/d/10w_x7qFX0_7He8vqHuSACGVczj6E-nMUI1HSKjZZ36E/"
+								class="block darkBlue repeat-background external"
+								data-name="requirements"
+								data-backgroundcolor="darkBlue"
+								><span>requirements</span></a
+							>
+						</div>
+						<div class="full">
+							<a
+								href="https://docs.google.com/document/d/1QjI84SsJwOXTNURsX73uv12CW2bQk5SXc-WT7FPUvTo/"
+								class="block orange repeat-background external"
+								data-name="wireframes"
+								data-backgroundcolor="orange"
+								><span>wireframes</span></a
+							>
+							<a
+								href="#product"
 								class="block yellow repeat-background internal"
-								data-name="onderzoek 3"
+								data-name="chat module"
 								data-color="white"
 								data-backgroundcolor="yellow"
-								><span>onderzoek 3</span></a
+								><span>chat module</span></a
 							>
 						</div>
 						<div class="divider"></div>
@@ -440,16 +466,16 @@ class PortfolioApp extends LitElement {
 						</div>
 						<div class="full end">
 							<a
-								href="#"
-								class="block lightBlue repeat-background internal"
+								href="#stofware-components"
+								class="block stofware-components lightBlue repeat-background internal"
 								data-name="stofware components"
 								data-color="white"
 								data-backgroundcolor="lightBlue"
 								><span>stofware components</span></a
 							>
 							<a
-								href="#"
-								class="block red repeat-background internal"
+								href="#input-component"
+								class="block input-component red repeat-background internal"
 								data-name="input component"
 								data-backgroundcolor="red"
 								><span>input component</span></a
@@ -516,6 +542,10 @@ class PortfolioApp extends LitElement {
 						design heb ik gemaakt. Het originele design is gemaakt door de designer van stofloos, maar zaten
 						geen interacties of responsive design in.
 					</p>
+				`;
+			case "product":
+				return html`
+					<p>Hier komt zometeen meer over het product.</p>
 				`;
 			default:
 				return null;
