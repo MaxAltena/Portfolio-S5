@@ -35,18 +35,16 @@ export default css`
 		align-items: center;
 		z-index: 1;
 		text-align: center;
+		transition: var(--transition);
 	}
 	.producten a {
 		font-size: calc(var(--unit) * 2.5);
 		cursor: pointer;
 	}
-	.producten .stofloos-data {
-		background-color: #2d61ff;
-		background-image: url("https://portfolio.maxaltena.com/images/stofloos-data-min.gif");
+	.producten .img-background {
 		background-size: 100%;
 		background-position: center;
 		background-repeat: no-repeat;
-		color: var(--white);
 		transition: background-size calc(var(--transition-speed) * 0.5) var(--transition-timing), var(--transition);
 		position: relative;
 		display: flex;
@@ -55,13 +53,14 @@ export default css`
 		align-items: center;
 		user-select: none;
 		-webkit-user-drag: none;
+		color: var(--white);
 	}
-	.producten .stofloos-data:active,
-	.producten .stofloos-data:hover,
-	.producten .stofloos-data:focus {
+	.producten .img-background:active,
+	.producten .img-background:hover,
+	.producten .img-background:focus {
 		background-size: 90%;
 	}
-	.producten .stofloos-data::before {
+	.producten .img-background::before {
 		content: "";
 		position: absolute;
 		top: 0;
@@ -74,14 +73,27 @@ export default css`
 		background: var(--black);
 		transition: var(--transition);
 	}
-	.producten .stofloos-data span {
+	.producten .img-background span {
 		pointer-events: none;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		color: var(--white);
+		transition: var(--transition);
 		z-index: 1;
 		text-align: center;
+	}
+	.producten .stofloos-data {
+		background-color: #2d61ff;
+		background-image: url("https://portfolio.maxaltena.com/images/stofloos-data-min.gif");
+	}
+	.producten .stofware-components {
+		background-color: black;
+		background-image: url("https://portfolio.maxaltena.com/images/stofware-components-min.gif");
+	}
+	.producten .input-component {
+		background-color: black;
+		background-image: url("https://portfolio.maxaltena.com/images/input-component-min.gif");
 	}
 `;

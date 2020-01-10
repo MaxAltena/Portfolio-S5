@@ -89,8 +89,15 @@ export default css`
 	}
 
 	.overlay p,
-	.overlay div {
+	.overlay div,
+	.overlay small,
+	.overlay span {
+		display: block;
 		text-align: left;
+	}
+
+	.overlay small {
+		margin-block-end: calc(var(--padding) * 0.75);
 	}
 
 	.overlay p .word {

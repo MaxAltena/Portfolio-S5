@@ -482,22 +482,15 @@ class PortfolioApp extends LitElement {
 								</p>
 								<p>Hier heb ik net als de rest van mijn producten mijn uiterste best op gedaan.</p>
 							</div>
-							<a href="#stofloos-data" class="block stofloos-data internal"><span>stofloos data</span></a>
+							<a href="#stofloos-data" class="block stofloos-data img-background internal"
+								><span>stofloos data</span></a
+							>
 						</div>
 						<div class="full end">
-							<a
-								href="#stofware-components"
-								class="block stofware-components lightBlue repeat-background internal"
-								data-name="stofware components"
-								data-color="white"
-								data-backgroundcolor="lightBlue"
+							<a href="#stofware-components" class="block stofware-components img-background internal"
 								><span>stofware components</span></a
 							>
-							<a
-								href="#input-component"
-								class="block input-component red repeat-background internal"
-								data-name="input component"
-								data-backgroundcolor="red"
+							<a href="#input-component" class="block input-component img-background internal"
 								><span>input component</span></a
 							>
 						</div>
@@ -548,6 +541,7 @@ class PortfolioApp extends LitElement {
 				`;
 			case "stofloos-data":
 				return html`
+					<small>Deze opdracht is gemaakt in opdracht van Stofloos.</small>
 					<img
 						src="https://portfolio.maxaltena.com/images/stofloos-data-min.gif"
 						alt="Stofloos Data website"
@@ -556,19 +550,36 @@ class PortfolioApp extends LitElement {
 						Live website:
 						<a href="https://stofloosdata.nl/" target="_blank" class="external">https://stofloosdata.nl/</a>
 					</p>
-					<p>De Stofloos Data website is gemaakt in opdracht van Stofloos.</p>
 					<p>
 						Ik heb de website gemaakt met een PWA template die stofloos heeft. Functionaliteit & responsive
 						design heb ik gemaakt. Het originele design is gemaakt door de designer van stofloos, maar zaten
 						geen interacties of responsive design in.
 					</p>
 				`;
+			case "stofware-components":
+				return html`
+					<small>Deze opdracht is gemaakt in opdracht van Stofloos.</small>
+					<img
+						src="https://portfolio.maxaltena.com/images/stofware-components-min.gif"
+						alt="Stofware Components"
+					/>
+				`;
+			case "input-component":
+				return html`
+					<small>Deze opdracht is gemaakt in opdracht van Stofloos.</small>
+					<img
+						src="https://portfolio.maxaltena.com/images/input-component-min.gif"
+						alt="Stofware input component"
+					/>
+				`;
 			case "product":
 				return html`
 					<p>Hier komt zometeen meer over het product.</p>
 				`;
 			default:
-				return null;
+				return html`
+					<p style="text-align: center; margin: var(--padding);">Er is nog niks op deze pagina. 404?</p>
+				`;
 		}
 	}
 
@@ -631,7 +642,7 @@ class PortfolioApp extends LitElement {
 					</div>
 					${this.activeItem
 						? html`
-								<h2>${this.items.find(_item => _item.slug === this.activeItem).title}</h2>
+								<h2>${this.items.find(_item => _item.slug === this.activeItem).title || "404"}</h2>
 								${this.renderInnerOverlay(this.items.find(_item => _item.slug === this.activeItem))}
 						  `
 						: null}
