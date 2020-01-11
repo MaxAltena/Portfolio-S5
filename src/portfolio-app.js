@@ -41,6 +41,16 @@ class PortfolioApp extends LitElement {
 				word: "PWA",
 				meaning:
 					"Progressieve Web Applicatie is een soort applicatiesoftware die via het web wordt geleverd en is gebouwd met behulp van veelgebruikte webtechnologieën, waaronder HTML, CSS en JavaScript."
+			},
+			{ word: "Component", meaning: "Onderdeel of element van een groter geheel." },
+			{
+				word: "LitElement",
+				meaning:
+					"Techniek waarbij basis klasse wordt gebruikt voor het maken van snelle, lichtgewicht webcomponenten."
+			},
+			{
+				word: "Edge case",
+				meaning: "Probleem of situatie die alleen optreedt bij een extreme (maximale of minimale) parameter."
 			}
 		];
 	}
@@ -500,15 +510,23 @@ class PortfolioApp extends LitElement {
 				return html`
 					<div class="inner last">
 						<div class="full text width-250">
-							<p>Reflectie van mijn stageperiode.</p>
 							<p>
-								Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod odit est labore?
-								Repudiandae accusamus assumenda dolor dolorem amet, quam cum quasi quod mollitia
-								praesentium rerum nostrum, facilis laboriosam. Dignissimos, rem corporis tempora hic
-								voluptatum quas fuga consectetur nobis architecto non explicabo iste sequi culpa
-								provident similique eveniet odit ipsum, labore illo reprehenderit assumenda. Doloremque
-								tempora dolor ipsam illo dolore non laudantium deserunt laboriosam natus fuga, eos
-								nostrum odio incidunt quaerat reiciendis quo inventore ullam voluptatem.
+								Tijdens mijn stage bij Stofloos heb ik vanalles geleerd. Verschillende positieve en
+								goede dingen geleerd op diverse vlakken maar ook enkele verbeterpunten geïdentificeerd
+								voor mijzelf om nog beter mijn talenten en ambities te kunnen ontwikkelen.
+							</p>
+							<p>
+								Waar het deze periode goed ging voor mij als stagiair is dat ik een uiteenlopend aantal
+								nieuwe innoverende technieken heb geleerd en toegepast. Hiermee heb ik een werkend
+								product kunnen ontwikkelen waar ik erg trots op ben. Om tot dit product te kunnen komen
+								ben ik vanaf het begin al aan het onderzoeken naar wat de gebruiker eist en verwacht van
+								een chat module.<br /><br />
+								<a
+									href="https://docs.google.com/document/d/1cW7S2UyAR8aWSMqr0sNC_yPw1W04syNS8fzDCQRSw0U/#heading=h.e1ttg6hn1aer"
+									target="_blank"
+									class="external"
+									>Meer lezen...</a
+								>
 							</p>
 						</div>
 						<div class="full end image width-600">
@@ -551,9 +569,12 @@ class PortfolioApp extends LitElement {
 						<a href="https://stofloosdata.nl/" target="_blank" class="external">https://stofloosdata.nl/</a>
 					</p>
 					<p>
-						Ik heb de website gemaakt met een PWA template die stofloos heeft. Functionaliteit & responsive
-						design heb ik gemaakt. Het originele design is gemaakt door de designer van stofloos, maar zaten
-						geen interacties of responsive design in.
+						De website is mijn eerste project geweest met LitElement, een techniek om web componenten te
+						maken, waarbij ik met een PWA template van Stofloos aan de slag ben gegaan. Van Stofloos kreeg
+						ik een design die gemaakt is door een designer. In het design stond weinig over de
+						functionaliteit van secties en componenten. Evenals wat er zou moeten gebeuren als er een ander
+						schermformaat was anders dan een normaal desktop scherm. Beide van deze 2, functionaliteit en
+						responsiveness, heb ik on the fly erbij ontwikkelt. Het eindresultaat is Stofloos Data.
 					</p>
 				`;
 			case "stofware-components":
@@ -563,6 +584,10 @@ class PortfolioApp extends LitElement {
 						src="https://portfolio.maxaltena.com/images/stofware-components-min.gif"
 						alt="Stofware Components"
 					/>
+					<p>
+						Stofware Components is een monorepo voor alle componenten en herbruikbare stukken code van
+						Stofloos. Hierin staan dus code voor front- en backend. Ik heb hiervoor de frontend code en de opzet van de gehele monorepo geupdate.
+					</p>
 				`;
 			case "input-component":
 				return html`
@@ -571,10 +596,15 @@ class PortfolioApp extends LitElement {
 						src="https://portfolio.maxaltena.com/images/input-component-min.gif"
 						alt="Stofware input component"
 					/>
+					<p>
+						Dit is een input component die ik in opdracht van Stofloos heb gemaakt om hun (binnenkort)
+						nieuwe login forms te mogen populeren. Er is veel tijd in gaan zitten om alles werkend te
+						krijgen op verschillende browsers en ander edge cases.
+					</p>
 				`;
 			case "product":
 				return html`
-					<p>Hier komt zometeen meer over het product.</p>
+					<p>De Stofware Chat module. Meer hierover later. 🙂</p>
 				`;
 			default:
 				return html`

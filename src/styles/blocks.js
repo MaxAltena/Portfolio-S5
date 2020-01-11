@@ -52,6 +52,10 @@ export default css`
 		font-size: var(--unit);
 		line-height: 1.8;
 	}
+	.full.scrollY {
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
 
 	.full.document {
 		background: var(--document-gray);
