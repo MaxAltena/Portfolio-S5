@@ -177,8 +177,6 @@ class PortfolioApp extends LitElement {
 	}
 
 	firstUpdated() {
-		const localhost = window.location.protocol === "http:" ? true : false;
-
 		// eslint-disable-next-line no-undef
 		scrollConverter.activate();
 
@@ -196,9 +194,30 @@ class PortfolioApp extends LitElement {
 			} else if (this.items.find(_item => _item.slug === scrollToHash)) this.toggleOverlay(true, scrollToHash);
 		}, 500);
 
+		// Check if font is available
+		function c(c) {
+			b.style.fontFamily = c;
+			e.appendChild(b);
+			f = b.clientWidth;
+			e.removeChild(b);
+			return f;
+		}
+		let f,
+			e = document.body,
+			b = document.createElement("span");
+		b.innerHTML = Array(100).join("wi");
+		b.style.cssText = ["position:absolute", "width:auto", "font-size:128px", "left:-99999px"].join(" !important;");
+		let g = c("monospace"),
+			h = c("serif"),
+			k = c("sans-serif");
+		let isFontAvailable = function(b) {
+			return g !== c(b + ",monospace") || k !== c(b + ",sans-serif") || h !== c(b + ",serif");
+		};
+
 		this.shadowRoot.querySelectorAll(".repeat-background").forEach(_background => {
 			const text = _background.dataset.name;
-			const font = `bold 25px ${localhost ? "Internacional" : "InternacionalExt"}`;
+
+			const font = `bold 25px ${isFontAvailable("Internacional") ? "Internacional" : "InternacionalExt"}`;
 			const color = _background.dataset.color || "black";
 			const backgroundColor = getComputedStyle(document.documentElement).getPropertyValue(
 				`--${_background.dataset.backgroundcolor}`
