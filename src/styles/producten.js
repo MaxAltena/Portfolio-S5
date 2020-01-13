@@ -89,15 +89,15 @@ export default css`
 		background-image: url("https://portfolio.maxaltena.com/images/stofloos-data-min.gif");
 	}
 	.producten .stofware-components {
-		background-color: black;
+		background-color: var(--black);
 		background-image: url("https://portfolio.maxaltena.com/images/stofware-components-min.gif");
 	}
 	.producten .input-component {
-		background-color: black;
+		background-color: var(--black);
 		background-image: url("https://portfolio.maxaltena.com/images/input-component-min.gif");
 	}
 	.producten .stofware-chat-module {
-		background-color: black;
+		background-color: var(--black);
 		background-image: url("https://portfolio.maxaltena.com/images/stofware-chat-module-min.gif");
 	}
 `;

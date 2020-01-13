@@ -185,11 +185,11 @@ export default css`
 	.block.orange,
 	.block.red,
 	.block.darkBlue {
-		color: var(--on-primary);
+		color: var(--white);
 	}
 	.block.black,
 	.block.lightBlue,
 	.block.yellow {
-		color: var(--primary);
+		color: var(--black);
 	}
 `;
