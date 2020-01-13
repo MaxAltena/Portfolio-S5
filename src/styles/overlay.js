@@ -93,7 +93,27 @@ export default css`
 	.overlay small,
 	.overlay span {
 		display: block;
+	}
+	.overlay p,
+	.overlay div,
+	.overlay small,
+	.overlay span,
+	.overlay ul,
+	.overlay li {
 		text-align: left;
+	}
+	.overlay ul {
+		margin: 0;
+		margin-block-start: calc(var(--unit) * -0.75);
+		padding: 0;
+	}
+	.overlay li {
+		list-style: none;
+		margin-block-end: calc(var(--unit) * 0.1);
+		font-size: calc(var(--unit) * 0.9);
+	}
+	.overlay li:before {
+		content: "- ";
 	}
 
 	.overlay small {

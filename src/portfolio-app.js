@@ -444,6 +444,7 @@ class PortfolioApp extends LitElement {
 							>
 							<a
 								href="https://docs.google.com/document/d/1CaszETCNuhY-0TPfQCgh7yk2IWd4He8Jg63xCEJUq-Y/"
+								target="_blank"
 								class="block red repeat-background external"
 								data-name="klant interviews"
 								data-backgroundcolor="red"
@@ -453,13 +454,16 @@ class PortfolioApp extends LitElement {
 						<div class="full">
 							<a
 								href="https://docs.google.com/document/d/1tCnu7FOvjtm3QTP__BQxucHydDw0d0Hp3GpIUp8hV9s/"
-								class="block green repeat-background external"
+								target="_blank"
+								class="block yellow repeat-background external"
 								data-name="technische pocs"
-								data-backgroundcolor="green"
+								data-color="white"
+								data-backgroundcolor="yellow"
 								><span>technische pocs</span></a
 							>
 							<a
 								href="https://docs.google.com/document/d/10w_x7qFX0_7He8vqHuSACGVczj6E-nMUI1HSKjZZ36E/"
+								target="_blank"
 								class="block darkBlue repeat-background external"
 								data-name="requirements"
 								data-backgroundcolor="darkBlue"
@@ -469,17 +473,32 @@ class PortfolioApp extends LitElement {
 						<div class="full">
 							<a
 								href="https://docs.google.com/document/d/1QjI84SsJwOXTNURsX73uv12CW2bQk5SXc-WT7FPUvTo/"
-								class="block orange repeat-background external"
+								target="_blank"
+								class="block green repeat-background external"
 								data-name="wireframes"
-								data-backgroundcolor="orange"
+								data-backgroundcolor="green"
 								><span>wireframes</span></a
 							>
 							<a
-								href="#product"
-								class="block yellow repeat-background internal"
-								data-name="chat module"
+								href="https://docs.google.com/document/d/105e_4gVtpggsav1pGrHQdQJG80vdPOLQ8jAJZtpLMds/"
+								target="_blank"
+								class="block lightBlue repeat-background external"
+								data-name="werkwijze &amp; tooling"
 								data-color="white"
-								data-backgroundcolor="yellow"
+								data-backgroundcolor="lightBlue"
+								><span>werkwijze &amp; tooling</span></a
+							>
+						</div>
+						<div class="full">
+							<a
+								href="https://docs.google.com/document/d/1tioV_d3cDisFzGwMcp02D_rNO3Md2iueAB4NX35S9qw/"
+								target="_blank"
+								class="block orange repeat-background external"
+								data-name="persoonlijke ontwikkeling"
+								data-backgroundcolor="orange"
+								><span>persoonlijke ontwikkeling</span></a
+							>
+							<a href="#product" class="block stofware-chat-module img-background internal"
 								><span>chat module</span></a
 							>
 						</div>
@@ -586,7 +605,8 @@ class PortfolioApp extends LitElement {
 					/>
 					<p>
 						Stofware Components is een monorepo voor alle componenten en herbruikbare stukken code van
-						Stofloos. Hierin staan dus code voor front- en backend. Ik heb hiervoor de frontend code en de opzet van de gehele monorepo geupdate.
+						Stofloos. Hierin staan dus code voor front- en backend. Ik heb hiervoor de frontend code en de
+						opzet van de gehele monorepo geupdate.
 					</p>
 				`;
 			case "input-component":
@@ -604,7 +624,23 @@ class PortfolioApp extends LitElement {
 				`;
 			case "product":
 				return html`
-					<p>De Stofware Chat module. Meer hierover later. 🙂</p>
+					<img
+						src="https://portfolio.maxaltena.com/images/stofware-chat-module-min.gif"
+						alt="Stofware chat module"
+					/>
+					<p>
+						De Stofware chat module, het product waar ik mijn hele stage aan heb gewerkt, staat hier dan als
+						een GIF hierboven. Ik heb hier heel wat tijd ingestoken, van onderzoeken tot ontwikkelen. Het
+						ontwikkelen vond ik hierbij toch het leukste maar was niet het belangrijkste.
+					</p>
+					<p>De chat module houdt functioneel gezien het volgende in:</p>
+					<ul>
+						<li>Het sturen en ontvangen van berichten</li>
+						<li>Het aanmaken van een nieuw gesprek</li>
+						<li>Aangeven als iemand aan het typen is</li>
+						<li>Persoonlijke assistent die reageert op vragen en diverse triggers</li>
+						<li>Persoonlijke assistent suggesteert diverse acties</li>
+					</ul>
 				`;
 			default:
 				return html`

@@ -96,4 +96,8 @@ export default css`
 		background-color: black;
 		background-image: url("https://portfolio.maxaltena.com/images/input-component-min.gif");
 	}
+	.producten .stofware-chat-module {
+		background-color: black;
+		background-image: url("https://portfolio.maxaltena.com/images/stofware-chat-module-min.gif");
+	}
 `;
