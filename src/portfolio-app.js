@@ -549,9 +549,9 @@ class PortfolioApp extends LitElement {
 					<div class="inner last">
 						<div class="full text width-250">
 							<p>
-								Tijdens mijn stage bij Stofloos heb ik vanalles geleerd. Verschillende positieve en
-								goede dingen geleerd op diverse vlakken maar ook enkele verbeterpunten geïdentificeerd
-								voor mijzelf om nog beter mijn talenten en ambities te kunnen ontwikkelen.
+								Tijdens mijn stage bij Stofloos heb ik diverse dingen geleerd. Verschillende positieve
+								en goede dingen op diverse vlakken, maar ook enkele verbeterpunten geïdentificeerd voor
+								mijzelf om nog beter mijn talenten en ambities te kunnen ontwikkelen.
 							</p>
 							<p>
 								Waar het deze periode goed ging voor mij als stagiair is dat ik een uiteenlopend aantal
