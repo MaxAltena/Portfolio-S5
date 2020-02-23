@@ -86,18 +86,18 @@ export default css`
 	}
 	.producten .stofloos-data {
 		background-color: #2d61ff;
-		background-image: url("https://portfolio.maxaltena.com/images/stofloos-data-min.gif");
+		background-image: url("https://static.maxaltena.com/image/portfolio-s5/stofloos-data-min.gif");
 	}
 	.producten .stofware-components {
 		background-color: var(--black);
-		background-image: url("https://portfolio.maxaltena.com/images/stofware-components-min.gif");
+		background-image: url("https://static.maxaltena.com/image/portfolio-s5/stofware-components-min.gif");
 	}
 	.producten .input-component {
 		background-color: var(--black);
-		background-image: url("https://portfolio.maxaltena.com/images/input-component-min.gif");
+		background-image: url("https://static.maxaltena.com/image/portfolio-s5/input-component-min.gif");
 	}
 	.producten .stofware-chat-module {
 		background-color: var(--black);
-		background-image: url("https://portfolio.maxaltena.com/images/stofware-chat-module-min.gif");
+		background-image: url("https://static.maxaltena.com/image/portfolio-s5/stofware-chat-module-min.gif");
 	}
 `;

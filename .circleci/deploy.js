@@ -12,7 +12,7 @@ var config = {
 	deleteRemote: true
 };
 
-ftpDeploy.deploy(config, function(err) {
-	if (err) console.log(err);
-	else console.log("Uploaded to server");
-});
+ftpDeploy
+	.deploy(config)
+	.then(res => console.log("Uploaded to server.", res))
+	.catch(err => console.log(err));

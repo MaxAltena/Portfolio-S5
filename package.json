@@ -1,8 +1,17 @@
 {
-	"name": "stageportfolio-s5",
+	"name": "portfolio-s5",
 	"description": "Het stageportfolio van Max Altena voor Semester 5 van de studie ICT & Media Design op de Fontys.",
-	"keywords": ["portfolio", "stage", "stofloos", "s5", "semester 5", "max", "altena", "max altena"],
-	"author": "Max Altena <max@maxaltena.com",
+	"keywords": [
+		"max",
+		"altena",
+		"max altena",
+		"portfolio",
+		"stage",
+		"stofloos",
+		"s5",
+		"semester 5"
+	],
+	"author": "Max Altena <Max@MaxAltena.com>",
 	"license": "UNLICENSED",
 	"version": "1.0.0",
 	"private": true,
@@ -10,46 +19,71 @@
 		"type": "git",
 		"url": "https://github.com/MaxAltena/Portfolio-S5.git"
 	},
+	"bugs": {
+		"url": "https://github.com/MaxAltena/portfolio-s5/issues"
+	},
 	"homepage": "https://portfolio.maxaltena.com/S5/",
 	"dependencies": {
-		"@babel/runtime": "^7.8.0",
+		"@babel/runtime": "^7.8.4",
 		"@webcomponents/webcomponentsjs": "^2.4.1",
 		"express": "^4.17.1",
 		"lit-element": "^2.2.1"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.8.0",
-		"@babel/plugin-proposal-class-properties": "^7.8.0",
-		"@babel/plugin-proposal-decorators": "^7.8.0",
-		"@babel/plugin-transform-runtime": "^7.8.0",
-		"@babel/preset-env": "^7.8.2",
+		"@babel/core": "^7.8.4",
+		"@babel/plugin-proposal-class-properties": "^7.8.3",
+		"@babel/plugin-proposal-decorators": "^7.8.3",
+		"@babel/plugin-transform-runtime": "^7.8.3",
+		"@babel/preset-env": "^7.8.4",
 		"babel-eslint": "^10.0.3",
 		"babel-loader": "^8.0.6",
 		"clean-webpack-plugin": "^3.0.0",
 		"copy-webpack-plugin": "^5.1.1",
 		"eslint": "^6.8.0",
-		"eslint-config-prettier": "^6.9.0",
+		"eslint-config-prettier": "^6.10.0",
 		"eslint-plugin-lit": "^1.2.0",
 		"eslint-plugin-prettier": "^3.1.2",
-		"file-loader": "^5.0.2",
+		"file-loader": "^5.1.0",
 		"ftp-deploy": "^2.3.6",
 		"html-webpack-plugin": "^3.2.0",
-		"husky": "^4.0.7",
-		"lint-staged": "^9.5.0",
+		"husky": "^4.2.3",
+		"lint-staged": "^10.0.7",
 		"nodemon": "^2.0.2",
 		"polymer-cli": "^1.9.11",
 		"prettier": "^1.19.1",
 		"url-loader": "^3.0.0",
-		"webpack": "^4.41.5",
-		"webpack-cli": "^3.3.10",
-		"webpack-dev-server": "^3.10.1",
+		"webpack": "^4.41.6",
+		"webpack-cli": "^3.3.11",
+		"webpack-dev-server": "^3.10.3",
 		"webpack-merge": "^4.2.2"
 	},
 	"scripts": {
-		"lint": "eslint '**/*.js'",
-		"lint:fix": "eslint --fix '**/*.js'",
+		"eslint": "eslint .",
+		"eslint:fix": "eslint --fix .",
+		"prettier": "prettier **/*",
+		"prettier:fix": "prettier --write **/*",
+		"dev": "echo \"Error: dev not specified\" && exit 0",
 		"build": "webpack --env production",
 		"start": "nodemon server.js | webpack-dev-server --env development"
 	},
-	"workspaces": []
+	"browserslist": [
+		"last 1 version",
+		"> 0.25%",
+		"maintained node versions",
+		"not dead"
+	],
+	"engines": {
+		"node": ">= 8.17.0",
+		"npm": ">= 6.12.1",
+		"yarn": ">= 1.19.1"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*": "npm run prettier:fix",
+		"*.js": "npm run eslint:fix"
+	}
 }

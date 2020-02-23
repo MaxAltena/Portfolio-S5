@@ -394,14 +394,14 @@ class PortfolioApp extends LitElement {
 							</div>
 							<a href="https://stofloos.nl/" target="_blank" class="block green logo height-50">
 								<img
-									src="https://portfolio.maxaltena.com/images/stofloos-logo-min.png"
+									src="https://static.maxaltena.com/image/portfolio-s5/stofloos-logo-min.png"
 									alt="Stofloos logo"
 								/>
 							</a>
 						</div>
 						<div class="full end image width-450">
 							<img
-								src="https://portfolio.maxaltena.com/images/s5-opdracht-min.jpg"
+								src="https://static.maxaltena.com/image/portfolio-s5/s5-opdracht-min.jpg"
 								alt="Scrumboard op een muur"
 							/>
 						</div>
@@ -569,7 +569,7 @@ class PortfolioApp extends LitElement {
 						</div>
 						<div class="full end image width-600">
 							<img
-								src="https://portfolio.maxaltena.com/images/s5-reflectie-min.jpg"
+								src="https://static.maxaltena.com/image/portfolio-s5/s5-reflectie-min.jpg"
 								alt="Max die hard aan het werk is"
 							/>
 						</div>
@@ -599,7 +599,7 @@ class PortfolioApp extends LitElement {
 				return html`
 					<small>Deze opdracht is gemaakt in opdracht van Stofloos.</small>
 					<img
-						src="https://portfolio.maxaltena.com/images/stofloos-data-min.gif"
+						src="https://static.maxaltena.com/image/portfolio-s5/stofloos-data-min.gif"
 						alt="Stofloos Data website"
 					/>
 					<p>
@@ -619,7 +619,7 @@ class PortfolioApp extends LitElement {
 				return html`
 					<small>Deze opdracht is gemaakt in opdracht van Stofloos.</small>
 					<img
-						src="https://portfolio.maxaltena.com/images/stofware-components-min.gif"
+						src="https://static.maxaltena.com/image/portfolio-s5/stofware-components-min.gif"
 						alt="Stofware Components"
 					/>
 					<p>
@@ -632,7 +632,7 @@ class PortfolioApp extends LitElement {
 				return html`
 					<small>Deze opdracht is gemaakt in opdracht van Stofloos.</small>
 					<img
-						src="https://portfolio.maxaltena.com/images/input-component-min.gif"
+						src="https://static.maxaltena.com/image/portfolio-s5/input-component-min.gif"
 						alt="Stofware input component"
 					/>
 					<p>
@@ -644,7 +644,7 @@ class PortfolioApp extends LitElement {
 			case "product":
 				return html`
 					<img
-						src="https://portfolio.maxaltena.com/images/stofware-chat-module-min.gif"
+						src="https://static.maxaltena.com/image/portfolio-s5/stofware-chat-module-min.gif"
 						alt="Stofware chat module"
 					/>
 					<p>

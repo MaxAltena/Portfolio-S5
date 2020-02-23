@@ -1,2 +1,5 @@
-stofware-components
-**/*/dist/**/*
+node_modules
+.eslintignore
+.gitignore
+.prettierignore
+.editorconfig
