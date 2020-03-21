@@ -18,7 +18,7 @@ class PortfolioApp extends LitElement {
 			{ slug: "stofloos-data", title: "stofloos data" },
 			{ slug: "stofware-components", title: "stofware components" },
 			{ slug: "input-component", title: "stofware input component" },
-			{ slug: "product", title: "chat module" }
+			{ slug: "product", title: "chat module" },
 		];
 		this.activeItem = "";
 		this.words = [
@@ -26,32 +26,32 @@ class PortfolioApp extends LitElement {
 			{ word: "Stofware", meaning: "Naam voor software die Stofloos ontwikkelt." },
 			{
 				word: "Datastudio",
-				meaning: "Webapplicatie waarmee je data dashboards kunt maken met je eigen databronnen."
+				meaning: "Webapplicatie waarmee je data dashboards kunt maken met je eigen databronnen.",
 			},
 			{
 				word: "Repository",
-				meaning: "Map of opslagruimte waar (code) projecten kunnen worden opgeslagen. Afkorting is 'repo'."
+				meaning: "Map of opslagruimte waar (code) projecten kunnen worden opgeslagen. Afkorting is 'repo'.",
 			},
 			{
 				word: "Monorepo",
 				meaning:
-					"Softwareontwikkelingsstrategie waarbij code voor veel projecten in dezelfde repository wordt opgeslagen."
+					"Softwareontwikkelingsstrategie waarbij code voor veel projecten in dezelfde repository wordt opgeslagen.",
 			},
 			{
 				word: "PWA",
 				meaning:
-					"Progressieve Web Applicatie is een soort applicatiesoftware die via het web wordt geleverd en is gebouwd met behulp van veelgebruikte webtechnologieën, waaronder HTML, CSS en JavaScript."
+					"Progressieve Web Applicatie is een soort applicatiesoftware die via het web wordt geleverd en is gebouwd met behulp van veelgebruikte webtechnologieën, waaronder HTML, CSS en JavaScript.",
 			},
 			{ word: "Component", meaning: "Onderdeel of element van een groter geheel." },
 			{
 				word: "LitElement",
 				meaning:
-					"Techniek waarbij basis klasse wordt gebruikt voor het maken van snelle, lichtgewicht webcomponenten."
+					"Techniek waarbij basis klasse wordt gebruikt voor het maken van snelle, lichtgewicht webcomponenten.",
 			},
 			{
 				word: "Edge case",
-				meaning: "Probleem of situatie die alleen optreedt bij een extreme (maximale of minimale) parameter."
-			}
+				meaning: "Probleem of situatie die alleen optreedt bij een extreme (maximale of minimale) parameter.",
+			},
 		];
 	}
 
@@ -75,7 +75,7 @@ class PortfolioApp extends LitElement {
 		selector.style.height = nextActive.offsetHeight + "px";
 
 		let navigationElements = this.shadowRoot.querySelectorAll("nav ul li a");
-		[].forEach.call(navigationElements, function(elm) {
+		[].forEach.call(navigationElements, function (elm) {
 			elm.classList.remove("active");
 		});
 
@@ -95,7 +95,7 @@ class PortfolioApp extends LitElement {
 		window.scroll({
 			left: anchorElement ? anchorElement.offsetLeft - padding * rem : 0,
 			top: 0,
-			behavior: "smooth"
+			behavior: "smooth",
 		});
 
 		setTimeout(() => (this.clicked = false), 1000);
@@ -137,7 +137,7 @@ class PortfolioApp extends LitElement {
 				window.scroll({
 					left: anchorElement ? anchorElement.offsetLeft - padding * rem : 0,
 					top: 0,
-					behavior: "smooth"
+					behavior: "smooth",
 				});
 
 				setTimeout(() => (this.clicked = false), 1000);
@@ -210,7 +210,7 @@ class PortfolioApp extends LitElement {
 		let g = c("monospace"),
 			h = c("serif"),
 			k = c("sans-serif");
-		let isFontAvailable = function(b) {
+		let isFontAvailable = function (b) {
 			return g !== c(b + ",monospace") || k !== c(b + ",sans-serif") || h !== c(b + ",serif");
 		};
 
@@ -328,10 +328,7 @@ class PortfolioApp extends LitElement {
 							</div>
 							<div class="intro links block lightBlue">
 								${this.sections.map((_section, i) => {
-									if (_section === "leeswijzer")
-										return html`
-											<p>inhoudsopgave</p>
-										`;
+									if (_section === "leeswijzer") return html` <p>inhoudsopgave</p> `;
 									else
 										return html`
 											<a

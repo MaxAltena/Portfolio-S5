@@ -14,18 +14,18 @@ const polyfills = [
 	{
 		from: resolve(`${webcomponentsjs}/webcomponents-*.js`),
 		to: join(OUTPUT_PATH, "vendor"),
-		flatten: true
+		flatten: true,
 	},
 	{
 		from: resolve(`${webcomponentsjs}/bundles/*.js`),
 		to: join(OUTPUT_PATH, "vendor", "bundles"),
-		flatten: true
+		flatten: true,
 	},
 	{
 		from: resolve(`${webcomponentsjs}/custom-elements-es5-adapter.js`),
 		to: join(OUTPUT_PATH, "vendor"),
-		flatten: true
-	}
+		flatten: true,
+	},
 ];
 
 const commonConfig = merge([
@@ -33,7 +33,7 @@ const commonConfig = merge([
 		entry: "./src/portfolio-app.js",
 		output: {
 			path: OUTPUT_PATH,
-			filename: "[name].[chunkhash:8].js"
+			filename: "[name].[chunkhash:8].js",
 		},
 		module: {
 			rules: [
@@ -46,14 +46,14 @@ const commonConfig = merge([
 								babelrc: true,
 								extends: join(__dirname + "/.babelrc"),
 								cacheDirectory: true,
-								envName: ENV
-							}
-						}
-					]
-				}
-			]
-		}
-	}
+								envName: ENV,
+							},
+						},
+					],
+				},
+			],
+		},
+	},
 ]);
 
 const developmentConfig = merge([
@@ -62,8 +62,8 @@ const developmentConfig = merge([
 		plugins: [
 			new CopyWebpackPlugin(polyfills),
 			new HtmlWebpackPlugin({
-				template: INDEX_TEMPLATE
-			})
+				template: INDEX_TEMPLATE,
+			}),
 		],
 
 		devServer: {
@@ -72,9 +72,9 @@ const developmentConfig = merge([
 			overlay: true,
 			port: 3000,
 			historyApiFallback: true,
-			host: "0.0.0.0"
-		}
-	}
+			host: "0.0.0.0",
+		},
+	},
 ]);
 
 const productionConfig = merge([
@@ -89,11 +89,11 @@ const productionConfig = merge([
 					collapseWhitespace: true,
 					removeComments: true,
 					minifyCSS: true,
-					minifyJS: true
-				}
-			})
-		]
-	}
+					minifyJS: true,
+				},
+			}),
+		],
+	},
 ]);
 
 module.exports = mode => {
