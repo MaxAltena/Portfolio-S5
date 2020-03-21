@@ -50,7 +50,7 @@
 		"lint-staged": "^10.0.8",
 		"nodemon": "^2.0.2",
 		"polymer-cli": "^1.9.11",
-		"prettier": "^1.19.1",
+		"prettier": "^2.0.0",
 		"url-loader": "^4.0.0",
 		"webpack": "^4.42.0",
 		"webpack-cli": "^3.3.11",
